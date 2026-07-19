@@ -1,0 +1,59 @@
+# ─────────────────────────────────────────────────────────────
+# Decap CMS configuration — Ghani Initiative
+# Location: /admin/config.yml
+# ─────────────────────────────────────────────────────────────
+
+backend:
+  name: git-gateway        # Serverless logins via Netlify Identity + Git Gateway
+  branch: main             # ⚠ Change to "master" if that is your repo's default branch
+  commit_messages:
+    create: "content: create {{collection}}"
+    update: "content: update {{collection}} via CMS"
+    uploadMedia: "content: upload media {{path}}"
+    deleteMedia: "content: delete media {{path}}"
+
+# Where uploaded images are stored in the repo,
+# and the public URL path the site serves them from.
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+# Optional quality-of-life settings
+site_url: "/"              # "View site" link inside the CMS toolbar
+search: false              # Not needed for a single-file collection; keeps admin fast
+
+collections:
+  - name: "marketplace"
+    label: "The Bazaar"
+    description: "Everything sold through The Bazaar. The maker's name always travels with the piece."
+    files:
+      - name: "products"
+        label: "Bazaar Products"
+        file: "data/products.json"     # Written to the repo as plain static JSON
+        fields:
+          - label: "Products"
+            name: "products"
+            label_singular: "Product"
+            widget: "list"             # Add / drag-to-reorder / delete from one screen
+            allow_add: true
+            collapsed: true
+            summary: "{{fields.title}} — {{fields.artisan}}"
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+                hint: "The name of the piece, e.g. Indigo Riverline Shawl"
+
+              - label: "Artisan"
+                name: "artisan"
+                widget: "string"
+                hint: "The maker's full name — the human footprint leads every product"
+
+              - label: "Price"
+                name: "price"
+                widget: "string"
+                hint: "Displayed exactly as written, e.g. PKR 8,400"
+
+              - label: "Image"
+                name: "image"
+                widget: "image"
+                hint: "Raw, natural-light photography works best. Uploads land in /assets/images"
