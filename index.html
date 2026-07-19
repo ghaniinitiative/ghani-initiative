@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ghani Initiative — Charity That Plans Its Own Retirement</title>
+<meta name="description" content="Ghani Initiative is a multi-branched movement in Sheikhupura, Punjab — replacing handouts with self-reliance through forests, livelihoods, and craft." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet" />
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          pearl: '#F7FAF9',
+          ink:   '#06302E',
+          teal: {
+            50:'#EEF6F5', 100:'#DDEDEB', 200:'#BBDBD7', 300:'#8FC3BD',
+            400:'#4E9D95', 500:'#177E78', 600:'#0F6863', 700:'#0C5450',
+            800:'#0A4340', 900:'#083634', 950:'#052422'
+          },
+          gold: {
+            50:'#FDF8EA', 100:'#FAEEC8', 200:'#F5DD8E', 300:'#EFC64D',
+            400:'#EAB023', 500:'#D99A0E', 600:'#BB7A09', 700:'#955C0B'
+          }
+        },
+        fontFamily: {
+          display: ['"Bricolage Grotesque"', 'sans-serif'],
+          sans: ['"Instrument Sans"', 'sans-serif'],
+          urdu: ['"Noto Nastaliq Urdu"', 'serif']
+        },
+        boxShadow: {
+          lift: '0 18px 40px -18px rgba(6,48,46,0.28)',
+          glow: '0 10px 30px -10px rgba(234,176,35,0.55)'
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-padding-top: 5.5rem; }
+  body { -webkit-font-smoothing: antialiased; }
+
+  /* Leaf-shaped image mask — the visual signature of the "branches" metaphor */
+  .leaf {
+    border-radius: 1.75rem 7rem 1.75rem 7rem;
+    overflow: hidden;
+  }
+  .leaf-flip { border-radius: 7rem 1.75rem 7rem 1.75rem; overflow: hidden; }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1);
+    transition-delay: var(--d, 0ms);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* Hover lift */
+  .lift { transition: transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s; }
+  .lift:hover { transform: translateY(-6px); }
+
+  /* Marquee */
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-track { animation: marquee 32s linear infinite; }
+
+  /* Hamburger morph */
+  .bar { transition: transform .3s ease, opacity .3s ease; transform-origin: center; }
+  .menu-open .bar-1 { transform: translateY(7px) rotate(45deg); }
+  .menu-open .bar-2 { opacity: 0; }
+  .menu-open .bar-3 { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile menu slide */
+  #mobileMenu { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s cubic-bezier(.22,.61,.36,1); }
+  #mobileMenu.open { grid-template-rows: 1fr; }
+  #mobileMenu > div { overflow: hidden; }
+
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 3px solid #EAB023; outline-offset: 3px; border-radius: .5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .marquee-track { animation: none; }
+    .lift, .lift:hover { transition: none; transform: none; }
+  }
+</style>
+</head>
+
+<body class="bg-pearl font-sans text-teal-900 selection:bg-gold-200 selection:text-ink">
+
+<!-- ══════════════════ NAVIGATION ══════════════════ -->
+<header id="siteHeader" class="fixed inset-x-0 top-0 z-50 transition-shadow duration-300">
+  <div class="bg-white/60 backdrop-blur-xl border-b border-white/50">
+    <nav class="mx-auto max-w-7xl px-5 sm:px-8" aria-label="Main">
+      <div class="flex h-[4.5rem] items-center justify-between gap-6">
+
+        <!-- Wordmark -->
+        <a href="#top" class="flex items-center gap-3 group">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-ink text-gold-400 shadow-lift">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22v-8"/><path d="M12 14c0-4 2.5-6.5 7-7--.5 4.5-3 7-7 7z" fill="currentColor" stroke="none"/>
+              <path d="M12 14c0-4-2.5-6.5-7-7 .5 4.5 3 7 7 7z" fill="currentColor" stroke="none" opacity=".55"/>
+            </svg>
+          </span>
+          <span class="font-display text-xl font-bold tracking-tight text-ink">Ghani <span class="text-teal-600">Initiative</span></span>
+        </a>
+
+        <!-- Desktop links -->
+        <div class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-teal-800">
+          <a href="#different" class="hover:text-ink transition-colors">Why We're Different</a>
+          <a href="#frontlines" class="hover:text-ink transition-colors">Active Frontlines</a>
+          <a href="bazaar.html" class="hover:text-ink transition-colors">The Bazaar</a>
+          <a href="#join" class="hover:text-ink transition-colors">Volunteer</a>
+          <a href="#join"
+             class="rounded-full bg-gold-400 px-6 py-2.5 font-semibold text-ink shadow-glow lift hover:bg-gold-300">
+            Join the Movement
+          </a>
+        </div>
+
+        <!-- Hamburger -->
+        <button id="menuBtn" class="lg:hidden grid h-11 w-11 place-items-center rounded-xl bg-ink/5"
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+          <span class="flex flex-col gap-[5px]">
+            <span class="bar bar-1 block h-[2px] w-6 rounded-full bg-ink"></span>
+            <span class="bar bar-2 block h-[2px] w-6 rounded-full bg-ink"></span>
+            <span class="bar bar-3 block h-[2px] w-6 rounded-full bg-ink"></span>
+          </span>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu">
+        <div>
+          <div class="flex flex-col gap-1 pb-6 pt-2 text-lg font-medium text-teal-900">
+            <a href="#different" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Why We're Different</a>
+            <a href="#frontlines" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Active Frontlines</a>
+            <a href="bazaar.html" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">The Bazaar</a>
+            <a href="#join" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Volunteer</a>
+            <a href="#join" class="menu-link mt-2 rounded-full bg-gold-400 px-6 py-3.5 text-center font-semibold text-ink shadow-glow">
+              Join the Movement
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="relative overflow-hidden pt-[7.5rem] lg:pt-[9.5rem]">
+  <!-- Ambient glows -->
+  <div class="pointer-events-none absolute -top-40 -left-40 h-[34rem] w-[34rem] rounded-full bg-teal-100 blur-3xl opacity-70" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute top-24 -right-48 h-[30rem] w-[30rem] rounded-full bg-gold-100 blur-3xl opacity-80" aria-hidden="true"></div>
+
+  <!-- Ghosted Urdu calligraphy: غنی — the name itself means "self-sufficient" -->
+  <div class="pointer-events-none absolute -right-6 top-16 select-none font-urdu text-[14rem] leading-none text-teal-900/[0.05] lg:text-[24rem]" aria-hidden="true">غنی</div>
+
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="grid items-center gap-14 lg:grid-cols-12">
+
+      <!-- Copy -->
+      <div class="lg:col-span-7">
+        <p class="reveal inline-flex items-center gap-3 rounded-full border border-teal-200 bg-white/70 px-4 py-2 text-[13px] font-medium tracking-wide text-teal-700 backdrop-blur">
+          <span class="h-2 w-2 rounded-full bg-gold-400"></span>
+          <span><span class="font-urdu text-base leading-none">يَا غَنِيُّ</span>&nbsp; — &nbsp;<span class="italic text-slate-600">True independence is relying on You.</span>
+          </span>
+        </p>
+
+        <h1 class="reveal mt-7 font-display text-[2.9rem] font-bold leading-[1.02] tracking-tight text-ink sm:text-6xl lg:text-7xl" style="--d:120ms">
+          Charity that plans<br />
+          <span class="text-teal-600">its own</span>
+          <span class="relative inline-block text-gold-500">retirement.
+            <svg class="absolute -bottom-2 left-0 w-full" height="10" viewBox="0 0 200 10" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M2 8 Q 100 -4 198 7" fill="none" stroke="#EAB023" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </h1>
+
+        <p class="reveal mt-7 max-w-xl text-lg leading-relaxed text-teal-800/90 sm:text-xl" style="--d:240ms">
+          Working to make communities stand entirely on their own, rural artisans connect directly to global markets, and knowledge is no more proprietary. Starting from Sheikhupura, expanding <strong class="font-semibold text-ink">until no one is left dependent.</strong>
+        </p>
+
+        <div class="reveal mt-10 flex flex-wrap items-center gap-4" style="--d:360ms">
+          <a href="#join"
+             class="rounded-full bg-gold-400 px-8 py-4 font-display text-lg font-semibold text-ink shadow-glow lift hover:bg-gold-300">
+            Invest Your Time
+          </a>
+          <a href="#frontlines"
+             class="rounded-full border-2 border-teal-700 px-8 py-[0.9rem] font-display text-lg font-semibold text-teal-800 lift hover:bg-teal-700 hover:text-pearl">
+            See Our Footprint
+          </a>
+        </div>
+
+        <p class="reveal mt-8 flex items-center gap-3 text-sm text-teal-700/80" style="--d:480ms">
+          <span class="flex -space-x-2">
+            <span class="h-8 w-8 rounded-full border-2 border-pearl bg-teal-300"></span>
+            <span class="h-8 w-8 rounded-full border-2 border-pearl bg-gold-300"></span>
+            <span class="h-8 w-8 rounded-full border-2 border-pearl bg-teal-500"></span>
+          </span>
+          Built hand-by-hand by volunteers, neighbours, and stubborn optimists.
+        </p>
+      </div>
+
+      <!-- Imagery -->
+      <div class="lg:col-span-5">
+        <div class="relative mx-auto max-w-md lg:max-w-none">
+          <figure class="reveal leaf shadow-lift" style="--d:300ms">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1400&auto=format&fit=crop"
+                 alt="Sunlight breaking through a young green forest" class="h-[26rem] w-full object-cover lg:h-[30rem]" loading="eager" />
+          </figure>
+          <figure class="reveal leaf-flip absolute -bottom-10 -left-6 hidden w-44 rotate-[-4deg] border-4 border-pearl shadow-lift sm:block lg:w-52" style="--d:460ms">
+            <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=800&auto=format&fit=crop"
+                 alt="Hands planting a seedling in dark soil" class="h-40 w-full object-cover lg:h-48" loading="lazy" />
+          </figure>
+          <div class="reveal absolute -right-3 -top-5 rotate-[3deg] rounded-2xl bg-white/80 px-5 py-3 shadow-lift backdrop-blur" style="--d:560ms">
+            <p class="font-display text-sm font-semibold text-ink">Every branch is built<br/>to outgrow us. 🌱</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Branch marquee -->
+  <div class="relative mt-16 border-y border-teal-100 bg-white/50 py-4 backdrop-blur-sm lg:mt-24" aria-hidden="true">
+    <div class="overflow-hidden">
+      <div class="marquee-track flex w-max items-center gap-10 whitespace-nowrap font-display text-sm font-semibold uppercase tracking-[0.22em] text-teal-700/70">
+        <!-- duplicated for seamless loop -->
+        <span>Tree Plantation</span><span class="text-gold-500">✦</span>
+        <span>Education</span><span class="text-gold-500">✦</span>
+        <span>Sustainable Livelihoods</span><span class="text-gold-500">✦</span>
+        <span>Artisan Craft</span><span class="text-gold-500">✦</span>
+        <span>Community First</span><span class="text-gold-500">✦</span>
+        <span>Tree Plantation</span><span class="text-gold-500">✦</span>
+        <span>Education</span><span class="text-gold-500">✦</span>
+        <span>Sustainable Livelihoods</span><span class="text-gold-500">✦</span>
+        <span>Artisan Craft</span><span class="text-gold-500">✦</span>
+        <span>Community First</span><span class="text-gold-500">✦</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ WHY WE'RE DIFFERENT ══════════════════ -->
+<section id="different" class="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-36">
+  <div class="grid gap-16 lg:grid-cols-12 lg:gap-12">
+
+    <!-- Manifesto -->
+    <div class="lg:col-span-6">
+      <p class="reveal flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-teal-600">
+        <span class="h-2 w-2 rounded-full bg-gold-400"></span> Why we do things differently
+      </p>
+
+      <h2 class="reveal mt-5 font-display text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl" style="--d:100ms">
+        A handout feeds a day.<br />
+        <span class="text-teal-600">A handover feeds a generation.</span>
+      </h2>
+
+      <div class="reveal mt-8 space-y-5 text-lg leading-relaxed text-teal-800/90" style="--d:200ms">
+        <p>
+          We've watched charity done the usual way: a photo, a food bag, a family in the same queue next month. It keeps people alive. It rarely lets them <em>live</em>.
+        </p>
+        <p>
+          So we chose a harder road. We plant things — trees, skills, shops, confidence — and then we do the most radical thing a welfare organization can do: <strong class="font-semibold text-ink">we step back and let them grow without us.</strong>
+        </p>
+        <p>
+          Our name is our promise. <span class="font-urdu text-xl text-teal-700">غنی</span> — <em>ghani</em> — means the one who needs nothing. That's what we want for every household we touch. Not our logo on their wall. Their own name over their own door.
+        </p>
+      </div>
+
+      <!-- Humble founders' note -->
+      <div class="reveal mt-10 rounded-3xl border border-gold-200 bg-gold-50 p-7" style="--d:300ms">
+        <p class="text-[15px] leading-relaxed text-teal-900/90">
+          <span class="font-display font-semibold text-ink">A small note from the founders —</span>
+          honestly, we're the least interesting part of this story. We lit a match; the neighbourhood became the fire. If you ever visit, ask for the volunteers first. They'll show you what Ghani really is.
+        </p>
+        <p class="mt-4 font-display text-sm font-semibold text-teal-700">— The founding families, Sheikhupura</p>
+      </div>
+    </div>
+
+    <!-- Community imagery -->
+    <div class="lg:col-span-6 lg:pl-6">
+      <div class="grid gap-6 sm:grid-cols-2">
+        <figure class="reveal leaf lift shadow-lift sm:mt-10" style="--d:150ms">
+          <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1000&auto=format&fit=crop"
+               alt="Volunteers packing supplies together" class="h-72 w-full object-cover" loading="lazy" />
+        </figure>
+        <figure class="reveal leaf-flip lift shadow-lift" style="--d:250ms">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000&auto=format&fit=crop"
+               alt="Friends standing shoulder to shoulder outdoors" class="h-72 w-full object-cover" loading="lazy" />
+        </figure>
+        <blockquote class="reveal lift rounded-3xl bg-ink p-7 text-pearl shadow-lift sm:col-span-2" style="--d:350ms">
+          <svg class="mb-4 h-7 w-7 text-gold-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.2 5C4.6 6.8 3 9.4 3 12.6 3 16.2 5.2 19 8.4 19c2.3 0 4-1.7 4-3.9 0-2.1-1.5-3.7-3.6-3.7-.4 0-.8.1-1 .1.3-2 1.6-3.8 3.4-5L7.2 5zm9.6 0c-2.6 1.8-4.2 4.4-4.2 7.6 0 3.6 2.2 6.4 5.4 6.4 2.3 0 4-1.7 4-3.9 0-2.1-1.5-3.7-3.6-3.7-.4 0-.8.1-1 .1.3-2 1.6-3.8 3.4-5L16.8 5z"/></svg>
+          <p class="font-display text-xl font-medium leading-relaxed">
+            "Nobody here calls it charity. They call it <span class="text-gold-300">our work</span> — because it is. The volunteers and the community aren't helping the mission. They <em>are</em> the mission."
+          </p>
+          <footer class="mt-4 text-sm text-teal-200">Field volunteer · Plantation drive, 2025</footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ ACTIVE FRONTLINES ══════════════════ -->
+<section id="frontlines" class="relative overflow-hidden bg-white py-24 lg:py-32">
+  <div class="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-teal-50 blur-3xl" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="max-w-2xl">
+      <p class="reveal flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-teal-600">
+        <span class="h-2 w-2 rounded-full bg-gold-400"></span> Active frontlines
+      </p>
+      <h2 class="reveal mt-5 font-display text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl" style="--d:100ms">
+        Where the work is happening <span class="text-teal-600">right now.</span>
+      </h2>
+      <p class="reveal mt-5 text-lg leading-relaxed text-teal-800/90" style="--d:200ms">
+        Not projects. Not programs. Frontlines — living branches of one ecosystem, each led by the people it serves.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-7 sm:grid-cols-2 xl:grid-cols-4">
+
+      <!-- Card 1: Tree Plantation -->
+      <article class="reveal lift group flex flex-col overflow-hidden rounded-[2rem] border border-teal-100 bg-pearl shadow-sm hover:shadow-lift" style="--d:100ms">
+        <div class="relative h-52 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1000&auto=format&fit=crop"
+               alt="Lush green leaves of young trees" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          <span class="absolute left-4 top-4 rounded-full bg-gold-400 px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink">Flagship</span>
+        </div>
+        <div class="flex flex-1 flex-col p-7">
+          <span class="mb-4 grid h-11 w-11 place-items-center rounded-2xl bg-teal-600 text-pearl">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22v-7"/><path d="M9 9a3 3 0 1 1 6 0c1.7 0 3 1.3 3 3s-1.3 3-3 3H9a3 3 0 0 1 0-6z"/></svg>
+          </span>
+          <h3 class="font-display text-xl font-bold text-ink">Sheikhupura's Largest Tree Plantation</h3>
+          <p class="mt-3 flex-1 text-[15px] leading-relaxed text-teal-800/90">
+            Native neem, sheesham, jamun, and amaltas — thousands of them — turning bare canal banks and school walls into shade, cleaner air, and a city that breathes again.
+          </p>
+          <p class="mt-5 text-sm font-semibold text-teal-600">Ecological revival, rooted locally →</p>
+        </div>
+      </article>
+
+      <!-- Card 2: Sustenance & Sovereignty -->
+      <article class="reveal lift group flex flex-col overflow-hidden rounded-[2rem] border border-teal-100 bg-pearl shadow-sm hover:shadow-lift" style="--d:200ms">
+        <div class="relative h-52 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1000&auto=format&fit=crop"
+               alt="Two people sealing a partnership with a handshake" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        </div>
+        <div class="flex flex-1 flex-col p-7">
+          <span class="mb-4 grid h-11 w-11 place-items-center rounded-2xl bg-teal-600 text-pearl">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V10l7-6 7 6v11"/><path d="M9 21v-6h6v6"/></svg>
+          </span>
+          <h3 class="font-display text-xl font-bold text-ink">Sustenance &amp; Sovereignty</h3>
+          <p class="mt-3 flex-1 text-[15px] leading-relaxed text-teal-800/90">
+            No cash envelopes. Instead: a fruit cart, a sewing machine, a tool kit, a starting stock — seed capital for family businesses that pay their own way within months.
+          </p>
+          <p class="mt-5 text-sm font-semibold text-teal-600">Income, not aid →</p>
+        </div>
+      </article>
+
+      <!-- Card 3: Bridging the Craft -->
+      <article class="reveal lift group flex flex-col overflow-hidden rounded-[2rem] border border-teal-100 bg-pearl shadow-sm hover:shadow-lift" style="--d:300ms">
+        <div class="relative h-52 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1462927114214-6956d2fddd4e?q=80&w=1000&auto=format&fit=crop"
+               alt="Artisan hands shaping clay on a wheel" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        </div>
+        <div class="flex flex-1 flex-col p-7">
+          <span class="mb-4 grid h-11 w-11 place-items-center rounded-2xl bg-teal-600 text-pearl">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12c4-6 12-6 16 0"/><path d="M4 12c4 6 12 6 16 0"/><path d="M4 12h16"/><circle cx="12" cy="12" r="2.2"/></svg>
+          </span>
+          <h3 class="font-display text-xl font-bold text-ink">Bridging the Craft</h3>
+          <p class="mt-3 flex-1 text-[15px] leading-relaxed text-teal-800/90">
+            Rural Pakistani artisans, connected directly to wider markets — no middlemen, no markup skimming. <strong class="font-semibold text-ink">100% of profits</strong> flow back to the makers and the collective ecosystem.
+          </p>
+          <a href="bazaar.html" class="mt-5 inline-block text-sm font-semibold text-teal-600 underline decoration-gold-400 decoration-2 underline-offset-4 transition-colors hover:text-ink">From village hands to the world →</a>
+        </div>
+      </article>
+
+      <!-- Card 4: Pitch portal -->
+      <a href="#" id="pitchCard"
+         class="reveal lift group relative flex min-h-[24rem] flex-col items-center justify-center gap-5 rounded-[2rem] border-[3px] border-dashed border-teal-300 bg-teal-50/50 p-8 text-center transition-colors hover:border-gold-400 hover:bg-gold-50"
+         style="--d:400ms" aria-label="Pitch a new branch — opens proposal form">
+        <span class="grid h-16 w-16 place-items-center rounded-full bg-white text-teal-600 shadow-lift transition-all duration-300 group-hover:rotate-90 group-hover:bg-gold-400 group-hover:text-ink">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+        <h3 class="font-display text-xl font-bold text-ink">Have a Vision for a New Branch?</h3>
+        <p class="text-[15px] leading-relaxed text-teal-800/90">
+          This slot is deliberately empty. The next frontline might be yours — pitch it, and we'll build it with you.
+        </p>
+        <span class="mt-1 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-gold-300 transition-colors group-hover:bg-teal-800">
+          Pitch It Here
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ THE BAZAAR PREVIEW ══════════════════ -->
+<!-- Self-contained section — safe to relocate as one block -->
+<section id="bazaar" class="relative overflow-hidden py-24 lg:py-32">
+  <div class="pointer-events-none absolute -right-32 top-10 h-80 w-80 rounded-full bg-gold-100 blur-3xl opacity-70" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+
+    <!-- Asymmetric section header -->
+    <div class="grid gap-10 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-7">
+        <p class="reveal flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-teal-600">
+          <span class="h-2 w-2 rounded-full bg-gold-400"></span> The Bazaar · <span class="font-urdu text-base normal-case leading-none tracking-normal">ہنر</span> — mastery of the hands
+        </p>
+        <h2 class="reveal mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl" style="--d:100ms">
+          Their work isn't cheap.<br />
+          <span class="text-teal-600">That's the whole point.</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-5">
+        <p class="reveal text-lg leading-relaxed text-slate-600" style="--d:200ms">
+          Every piece carries the name of the artisan who made it — priced at <strong class="font-semibold text-ink">full global market value</strong>, never "local rates." The maker is paid first. Every remaining rupee of margin flows straight back into the foundation to build self-reliance infrastructure.
+        </p>
+        <div class="reveal mt-5 flex flex-wrap gap-3 text-[13px] font-semibold" style="--d:300ms">
+          <span class="rounded-full border border-gold-200 bg-gold-50 px-4 py-1.5 text-gold-700">Makers paid first</span>
+          <span class="rounded-full border border-teal-100 bg-teal-50 px-4 py-1.5 text-teal-700">100% of margins reinvested</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured 3-column preview grid -->
+    <div class="mt-16 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Amna Bibi -->
+      <article class="reveal group" style="--d:100ms">
+        <div class="lift overflow-hidden rounded-2xl bg-teal-50 shadow-sm">
+          <div class="aspect-[4/5] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=1000&auto=format&fit=crop"
+                 alt="Folded handwoven shawls in natural light" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          </div>
+        </div>
+        <div class="mt-5 flex items-center gap-3">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold-100 font-display text-sm font-bold text-gold-700">AB</span>
+          <p class="text-[15px]"><span class="font-display font-bold text-ink">Amna Bibi</span> <span class="text-slate-500">· Jandiala Sher Khan node</span></p>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between gap-4">
+          <h3 class="font-display text-lg font-bold text-ink">Indigo Riverline Shawl</h3>
+          <p class="shrink-0 text-right">
+            <span class="font-display font-bold text-teal-700">PKR 8,400</span>
+            <span class="block text-xs text-slate-400">≈ $30 worldwide</span>
+          </p>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-500">
+          Three shawls a month now cover Amna's household outright — no middleman has touched her loom since 2024.
+        </p>
+        <a href="https://wa.me/923000000000?text=Assalam-o-Alaikum!%20Dispatch%20request%20from%20The%20Bazaar%20-%20Item:%20Indigo%20Riverline%20Shawl%20%7C%20Maker:%20Amna%20Bibi%20(Jandiala%20Sher%20Khan%20node).%20Please%20share%20availability%20and%20delivery%20details."
+           target="_blank" rel="noopener"
+           class="mt-4 flex w-full items-center justify-center gap-2.5 rounded-2xl bg-teal-800 py-3.5 font-semibold text-white transition-colors hover:bg-ink">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>
+          Dispatch via WhatsApp
+        </a>
+      </article>
+
+      <!-- Noor Fatima -->
+      <article class="reveal group" style="--d:200ms">
+        <div class="lift overflow-hidden rounded-2xl bg-teal-50 shadow-sm">
+          <div class="aspect-[4/5] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1000&auto=format&fit=crop"
+                 alt="Handcrafted silver jewellery on dark cloth" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          </div>
+        </div>
+        <div class="mt-5 flex items-center gap-3">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold-100 font-display text-sm font-bold text-gold-700">NF</span>
+          <p class="text-[15px]"><span class="font-display font-bold text-ink">Noor Fatima</span> <span class="text-slate-500">· Muridke node</span></p>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between gap-4">
+          <h3 class="font-display text-lg font-bold text-ink">Hand-Set Silver Jhumkay</h3>
+          <p class="shrink-0 text-right">
+            <span class="font-display font-bold text-teal-700">PKR 9,800</span>
+            <span class="block text-xs text-slate-400">≈ $35 worldwide</span>
+          </p>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-500">
+          Noor's bench pays her brother's college fees — one pair at a time, priced like the silverwork it is.
+        </p>
+        <a href="https://wa.me/923000000000?text=Assalam-o-Alaikum!%20Dispatch%20request%20from%20The%20Bazaar%20-%20Item:%20Hand-Set%20Silver%20Jhumkay%20%7C%20Maker:%20Noor%20Fatima%20(Muridke%20node).%20Please%20share%20availability%20and%20delivery%20details."
+           target="_blank" rel="noopener"
+           class="mt-4 flex w-full items-center justify-center gap-2.5 rounded-2xl bg-teal-800 py-3.5 font-semibold text-white transition-colors hover:bg-ink">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>
+          Dispatch via WhatsApp
+        </a>
+      </article>
+
+      <!-- Ustad Bashir -->
+      <article class="reveal group sm:col-span-2 lg:col-span-1" style="--d:300ms">
+        <div class="lift overflow-hidden rounded-2xl bg-teal-50 shadow-sm">
+          <div class="aspect-[4/5] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1000&auto=format&fit=crop"
+                 alt="Carved wooden figurine in soft daylight" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          </div>
+        </div>
+        <div class="mt-5 flex items-center gap-3">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold-100 font-display text-sm font-bold text-gold-700">UB</span>
+          <p class="text-[15px]"><span class="font-display font-bold text-ink">Ustad Bashir</span> <span class="text-slate-500">· Khanqah Dogran node</span></p>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between gap-4">
+          <h3 class="font-display text-lg font-bold text-ink">Carved Sheesham Figurine</h3>
+          <p class="shrink-0 text-right">
+            <span class="font-display font-bold text-teal-700">PKR 5,500</span>
+            <span class="block text-xs text-slate-400">≈ $20 worldwide</span>
+          </p>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-500">
+          Forty years of carving finally carries Bashir's own signature — not a factory stamp.
+        </p>
+        <a href="https://wa.me/923000000000?text=Assalam-o-Alaikum!%20Dispatch%20request%20from%20The%20Bazaar%20-%20Item:%20Carved%20Sheesham%20Figurine%20%7C%20Maker:%20Ustad%20Bashir%20(Khanqah%20Dogran%20node).%20Please%20share%20availability%20and%20delivery%20details."
+           target="_blank" rel="noopener"
+           class="mt-4 flex w-full items-center justify-center gap-2.5 rounded-2xl bg-teal-800 py-3.5 font-semibold text-white transition-colors hover:bg-ink">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>
+          Dispatch via WhatsApp
+        </a>
+      </article>
+    </div>
+
+    <!-- Primary CTA to the full catalog -->
+    <div class="reveal mt-16 text-center" style="--d:150ms">
+      <a href="bazaar.html"
+         class="group inline-flex items-center gap-3 rounded-full bg-teal-800 px-9 py-4 font-display text-lg font-semibold text-white shadow-lift lift hover:bg-ink">
+        Explore the Full Collection
+        <svg class="transition-transform duration-300 group-hover:translate-x-1" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+      </a>
+      <p class="mt-5 text-sm text-slate-500">
+        Nine pieces · nine names · <span class="font-semibold text-teal-700 underline decoration-gold-400 decoration-2 underline-offset-4">zero batch codes</span> — every dispatch handled by a human.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CALL TO ACTION + CONTACT ══════════════════ -->
+<section id="join" class="relative px-5 py-24 sm:px-8 lg:py-32">
+  <div class="relative mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-ink shadow-lift">
+    <!-- Texture -->
+    <div class="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-teal-700/40 blur-3xl" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute -bottom-32 -left-20 h-96 w-96 rounded-full bg-gold-500/20 blur-3xl" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute bottom-4 right-4 select-none font-urdu text-[11rem] leading-none text-pearl/[0.04] lg:text-[16rem]" aria-hidden="true">غنی</div>
+
+    <div class="relative grid gap-14 p-8 sm:p-12 lg:grid-cols-12 lg:gap-10 lg:p-16">
+
+      <!-- Manifesto CTA -->
+      <div class="lg:col-span-6">
+        <p class="reveal text-sm font-semibold uppercase tracking-[0.2em] text-gold-300">The call to action</p>
+        <h2 class="reveal mt-5 font-display text-4xl font-bold leading-[1.06] tracking-tight text-pearl sm:text-5xl lg:text-6xl" style="--d:100ms">
+          We don't want<br />your money.
+        </h2>
+        <p class="reveal mt-7 max-w-md text-xl leading-relaxed text-teal-100" style="--d:200ms">
+          We want your passion, your skills, and your time.
+          <span class="mt-3 block font-display text-2xl font-semibold text-gold-300">The ultimate donation is you.</span>
+        </p>
+
+        <!-- Contact channels -->
+        <ul class="reveal mt-10 space-y-4 text-teal-100" style="--d:300ms">
+          <li class="flex items-center gap-4">
+            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-white/10 text-gold-300 backdrop-blur">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/></svg>
+            </span>
+            <a href="mailto:hello@ghaniInitiative.org" class="font-medium hover:text-gold-300 transition-colors">hello@ghaniInitiative.org</a>
+          </li>
+          <li class="flex items-center gap-4">
+            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-white/10 text-gold-300 backdrop-blur">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg>
+            </span>
+            <a href="tel:+923000000000" class="font-medium hover:text-gold-300 transition-colors">+92 300 0000000</a>
+          </li>
+          <li class="flex items-center gap-4">
+            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-white/10 text-gold-300 backdrop-blur">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <span class="font-medium">Sheikhupura, Punjab, Pakistan</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Volunteer form -->
+      <div class="lg:col-span-6">
+        <div class="reveal rounded-3xl border border-white/15 bg-white/10 p-7 backdrop-blur-xl sm:p-9" style="--d:200ms">
+          <h3 class="font-display text-2xl font-bold text-pearl">Sign up to volunteer</h3>
+          <p class="mt-2 text-[15px] text-teal-100">Tell us what you can give. We'll find the branch where it matters most.</p>
+
+          <form id="volunteerForm" class="mt-7 space-y-5" novalidate>
+            <div>
+              <label for="vName" class="mb-2 block text-sm font-medium text-teal-100">Your name</label>
+              <input id="vName" name="name" type="text" required placeholder="e.g. Ayesha Khan"
+                     class="w-full rounded-2xl border border-white/20 bg-white/10 px-5 py-3.5 text-pearl placeholder:text-teal-300/60 backdrop-blur focus:border-gold-300" />
+            </div>
+            <div>
+              <label for="vContact" class="mb-2 block text-sm font-medium text-teal-100">Email or phone</label>
+              <input id="vContact" name="contact" type="text" required placeholder="So we can reach you"
+                     class="w-full rounded-2xl border border-white/20 bg-white/10 px-5 py-3.5 text-pearl placeholder:text-teal-300/60 backdrop-blur focus:border-gold-300" />
+            </div>
+            <div>
+              <label for="vGive" class="mb-2 block text-sm font-medium text-teal-100">What can you give?</label>
+              <select id="vGive" name="gift"
+                      class="w-full appearance-none rounded-2xl border border-white/20 bg-white/10 px-5 py-3.5 text-pearl backdrop-blur focus:border-gold-300">
+                <option class="text-ink" value="time">My time — weekends &amp; drives</option>
+                <option class="text-ink" value="skills">My skills — teaching, design, trade</option>
+                <option class="text-ink" value="network">My network — markets &amp; connections</option>
+                <option class="text-ink" value="idea">An idea for a new branch</option>
+              </select>
+            </div>
+            <button type="submit"
+                    class="w-full rounded-full bg-gold-400 py-4 font-display text-lg font-semibold text-ink shadow-glow lift hover:bg-gold-300">
+              Count Me In
+            </button>
+          </form>
+
+          <p id="formSuccess" hidden class="mt-7 rounded-2xl border border-gold-300/40 bg-gold-400/15 p-5 text-center font-medium text-gold-200">
+            Welcome to the movement. 🌱 A volunteer coordinator will reach out within a few days.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="bg-teal-950 text-teal-200">
+  <div class="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+    <div class="grid gap-12 md:grid-cols-12">
+
+      <div class="md:col-span-5">
+        <a href="#top" class="flex items-center gap-3">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-gold-400 text-ink">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22v-8"/><path d="M12 14c0-4 2.5-6.5 7-7-.5 4.5-3 7-7 7z" fill="currentColor" stroke="none"/>
+              <path d="M12 14c0-4-2.5-6.5-7-7 .5 4.5 3 7 7 7z" fill="currentColor" stroke="none" opacity=".55"/>
+            </svg>
+          </span>
+          <span class="font-display text-xl font-bold text-pearl">Ghani Initiative</span>
+        </a>
+        <p class="mt-5 max-w-sm text-[15px] leading-relaxed text-teal-300">
+          A multi-branched movement from Sheikhupura, Punjab — replacing handouts with self-reliance, one growing branch at a time.
+        </p>
+      </div>
+
+      <nav class="md:col-span-3" aria-label="Footer — Organization">
+        <h4 class="font-display text-sm font-semibold uppercase tracking-[0.18em] text-pearl">Organization</h4>
+        <ul class="mt-5 space-y-3 text-[15px]">
+          <li><a href="#different" class="hover:text-gold-300 transition-colors">Why we're different</a></li>
+          <li><a href="#frontlines" class="hover:text-gold-300 transition-colors">Active frontlines</a></li>
+          <li><a href="bazaar.html" class="hover:text-gold-300 transition-colors">The Bazaar</a></li>
+          <li><a href="#join" class="hover:text-gold-300 transition-colors">Volunteer</a></li>
+          <li><a href="#" class="hover:text-gold-300 transition-colors">Pitch a branch</a></li>
+        </ul>
+      </nav>
+
+      <div class="md:col-span-4">
+        <h4 class="font-display text-sm font-semibold uppercase tracking-[0.18em] text-pearl">Follow the growth</h4>
+        <div class="mt-5 flex gap-3">
+          <a href="#" aria-label="Facebook" class="grid h-11 w-11 place-items-center rounded-2xl bg-white/5 text-teal-200 lift hover:bg-gold-400 hover:text-ink">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9V11H8v3h2.3v7h3.2z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="grid h-11 w-11 place-items-center rounded-2xl bg-white/5 text-teal-200 lift hover:bg-gold-400 hover:text-ink">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp" class="grid h-11 w-11 place-items-center rounded-2xl bg-white/5 text-teal-200 lift hover:bg-gold-400 hover:text-ink">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="grid h-11 w-11 place-items-center rounded-2xl bg-white/5 text-teal-200 lift hover:bg-gold-400 hover:text-ink">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.5 12 5.5 12 5.5s-6 0-7.9.6A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.6 7.9.6 7.9.6s6 0 7.9-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22.4 12 31 31 0 0 0 22 8.2zM10 15V9l5.2 3L10 15z"/></svg>
+          </a>
+        </div>
+        <p class="mt-6 text-sm text-teal-400">
+          <span class="font-urdu text-base">غنی</span> — because everyone deserves to need nothing.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-teal-400 sm:flex-row">
+      <p>© 2026 Ghani Initiative. Grown in Sheikhupura, shared with the world.</p>
+      <p>Built by volunteers, for the community.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════ VANILLA JS ══════════════════ -->
+<script>
+  // ── Mobile menu ──────────────────────────────────────────────
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.classList.toggle('menu-open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  // Close menu after tapping a link
+  document.querySelectorAll('.menu-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuBtn.classList.remove('menu-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ── Header shadow on scroll ──────────────────────────────────
+  const header = document.getElementById('siteHeader');
+  const onScroll = () => {
+    header.classList.toggle('shadow-lift', window.scrollY > 12);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ── Scroll-reveal (respects reduced motion) ──────────────────
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reveals = document.querySelectorAll('.reveal');
+
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    reveals.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(el => io.observe(el));
+  }
+
+  // ── Volunteer form (demo submit) ─────────────────────────────
+  const form = document.getElementById('volunteerForm');
+  const success = document.getElementById('formSuccess');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const contact = form.contact.value.trim();
+    if (!name || !contact) {
+      (!name ? form.name : form.contact).focus();
+      return;
+    }
+    form.hidden = true;
+    success.hidden = false;
+    success.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'center' });
+  });
+
+  // ── Pitch card → external proposal form placeholder ──────────
+  document.getElementById('pitchCard').addEventListener('click', e => {
+    e.preventDefault();
+    // Replace '#' with your live proposal form URL (e.g. Google Form) and remove this handler.
+    alert('Link this card to your proposal form URL — e.g. a Google Form for new branch pitches.');
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Bazaar — Ghani Initiative · Masterwork, Priced Like It</title>
+<meta name="description" content="The Bazaar is Ghani Initiative's direct marketplace: named artisans from the villages around Sheikhupura, paid first at full global value. Margins fund self-reliance infrastructure." />
+
+<!-- Fonts (identical to homepage system) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet" />
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          pearl: '#F7FAF9',
+          ink:   '#06302E',
+          teal: {
+            50:'#EEF6F5', 100:'#DDEDEB', 200:'#BBDBD7', 300:'#8FC3BD',
+            400:'#4E9D95', 500:'#177E78', 600:'#0F6863', 700:'#0C5450',
+            800:'#0A4340', 900:'#083634', 950:'#052422'
+          },
+          gold: {
+            50:'#FDF8EA', 100:'#FAEEC8', 200:'#F5DD8E', 300:'#EFC64D',
+            400:'#EAB023', 500:'#D99A0E', 600:'#BB7A09', 700:'#955C0B'
+          }
+        },
+        fontFamily: {
+          display: ['"Bricolage Grotesque"', 'sans-serif'],
+          sans: ['"Instrument Sans"', 'sans-serif'],
+          urdu: ['"Noto Nastaliq Urdu"', 'serif']
+        },
+        boxShadow: {
+          lift: '0 18px 40px -18px rgba(6,48,46,0.28)',
+          glow: '0 10px 30px -10px rgba(234,176,35,0.55)'
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-padding-top: 5.5rem; }
+  body { -webkit-font-smoothing: antialiased; }
+
+  /* Leaf mask — brand signature, reserved for hero media on this page */
+  .leaf { border-radius: 1.75rem 7rem 1.75rem 7rem; overflow: hidden; }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1);
+    transition-delay: var(--d, 0ms);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* Hover lift */
+  .lift { transition: transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s; }
+  .lift:hover { transform: translateY(-6px); }
+
+  /* Catalog filter fade */
+  .product-card { transition: opacity .25s ease, transform .25s ease; }
+  .filter-out { opacity: 0; transform: scale(.96); }
+
+  /* Hamburger morph */
+  .bar { transition: transform .3s ease, opacity .3s ease; transform-origin: center; }
+  .menu-open .bar-1 { transform: translateY(7px) rotate(45deg); }
+  .menu-open .bar-2 { opacity: 0; }
+  .menu-open .bar-3 { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile menu slide */
+  #mobileMenu { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s cubic-bezier(.22,.61,.36,1); }
+  #mobileMenu.open { grid-template-rows: 1fr; }
+  #mobileMenu > div { overflow: hidden; }
+
+  /* Filter row scroll on mobile */
+  .filter-row { scrollbar-width: none; }
+  .filter-row::-webkit-scrollbar { display: none; }
+
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid #EAB023; outline-offset: 3px; border-radius: .5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .lift, .lift:hover { transition: none; transform: none; }
+    .product-card { transition: none; }
+  }
+</style>
+</head>
+
+<body class="bg-pearl font-sans text-teal-900 selection:bg-gold-200 selection:text-ink">
+
+<!-- ══════════════════ NAVIGATION ══════════════════ -->
+<header id="siteHeader" class="fixed inset-x-0 top-0 z-50 transition-shadow duration-300">
+  <div class="bg-white/60 backdrop-blur-xl border-b border-white/50">
+    <nav class="mx-auto max-w-7xl px-5 sm:px-8" aria-label="Main">
+      <div class="flex h-[4.5rem] items-center justify-between gap-6">
+
+        <!-- Wordmark -->
+        <a href="#top" class="flex items-center gap-3 group">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-ink text-gold-400 shadow-lift">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22v-8"/><path d="M12 14c0-4 2.5-6.5 7-7--.5 4.5-3 7-7 7z" fill="currentColor" stroke="none"/>
+              <path d="M12 14c0-4-2.5-6.5-7-7 .5 4.5 3 7 7 7z" fill="currentColor" stroke="none" opacity=".55"/>
+            </svg>
+          </span>
+          <span class="font-display text-xl font-bold tracking-tight text-ink">Ghani <span class="text-teal-600">Initiative</span></span>
+        </a>
+
+        <!-- Desktop links -->
+        <!--underline underline-offset-8 decoration-2 decoration-amber-400     use this for the active page-->
+        <div class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-teal-800">
+          <a href="#different" class="hover:text-ink transition-colors">Why We're Different</a>
+          <a href="#frontlines" class="hover:text-ink transition-colors">Active Frontlines</a>
+          <a href="bazaar.html" class="hover:text-ink transition-colors underline underline-offset-8 decoration-2 decoration-amber-400">The Bazaar</a>
+          <a href="#join" class="hover:text-ink transition-colors">Volunteer</a>
+          <a href="#join"
+             class="rounded-full bg-gold-400 px-6 py-2.5 font-semibold text-ink shadow-glow lift hover:bg-gold-300">
+            Join the Movement
+          </a>
+        </div>
+
+        <!-- Hamburger -->
+        <button id="menuBtn" class="lg:hidden grid h-11 w-11 place-items-center rounded-xl bg-ink/5"
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+          <span class="flex flex-col gap-[5px]">
+            <span class="bar bar-1 block h-[2px] w-6 rounded-full bg-ink"></span>
+            <span class="bar bar-2 block h-[2px] w-6 rounded-full bg-ink"></span>
+            <span class="bar bar-3 block h-[2px] w-6 rounded-full bg-ink"></span>
+          </span>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu">
+        <div>
+          <div class="flex flex-col gap-1 pb-6 pt-2 text-lg font-medium text-teal-900">
+            <a href="#different" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Why We're Different</a>
+            <a href="#frontlines" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Active Frontlines</a>
+            <a href="bazaar.html" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">The Bazaar</a>
+            <a href="#join" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Volunteer</a>
+            <a href="#join" class="menu-link mt-2 rounded-full bg-gold-400 px-6 py-3.5 text-center font-semibold text-ink shadow-glow">
+              Join the Movement
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════════════════ HERO — asymmetric split ══════════════════ -->
+<section class="relative overflow-hidden pt-[7.5rem] pb-16 lg:pt-[9.5rem] lg:pb-24">
+  <!-- Ambient glow -->
+  <div class="pointer-events-none absolute -top-32 right-[-10rem] h-[30rem] w-[30rem] rounded-full bg-gold-100 blur-3xl opacity-80" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute bottom-0 left-[-12rem] h-[26rem] w-[26rem] rounded-full bg-teal-100 blur-3xl opacity-70" aria-hidden="true"></div>
+
+  <!-- Page-specific ghost mark: ہنر (hunar) — mastery of the hands -->
+  <div class="pointer-events-none absolute -left-4 bottom-[-3rem] select-none font-urdu text-[13rem] leading-none text-teal-900/[0.05] lg:text-[22rem]" aria-hidden="true">ہنر</div>
+
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="grid items-end gap-12 lg:grid-cols-12">
+
+      <!-- Copy — deliberately wider than the media, opposite of the homepage split -->
+      <div class="lg:col-span-7">
+        <p class="reveal inline-flex items-center gap-3 rounded-full border border-teal-200 bg-white/70 px-4 py-2 text-[13px] font-medium tracking-wide text-teal-700 backdrop-blur">
+          <span class="h-2 w-2 rounded-full bg-gold-400"></span>
+          The Bazaar · <span class="font-urdu text-base leading-none">ہنر</span> — <em>hunar: mastery of the hands</em>
+        </p>
+
+        <h1 class="reveal mt-7 font-display text-[2.7rem] font-bold leading-[1.03] tracking-tight text-ink sm:text-6xl lg:text-[4.4rem]" style="--d:120ms">
+          This is not<br class="hidden sm:block" /> a charity shop.<br />
+          <span class="text-gold-500">It's a hall of masters.</span>
+        </h1>
+
+        <p class="reveal mt-7 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl" style="--d:240ms">
+          Every piece below left the hands of a <strong class="font-semibold text-ink">named artisan</strong> from the villages around Sheikhupura. Nobody here is asking for your sympathy — they're offering you work that took decades to master, <strong class="font-semibold text-ink">priced at full global value, never "local rates."</strong>
+        </p>
+
+        <!-- The economics flow — this page's signature element -->
+        <div class="reveal mt-10 rounded-3xl border border-teal-100 bg-white/80 p-6 shadow-sm backdrop-blur sm:p-7" style="--d:360ms">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-teal-600">Where every rupee goes</p>
+          <div class="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-3">
+            <div class="flex-1">
+              <p class="font-display font-bold text-ink">You request a piece</p>
+              <p class="mt-1 text-sm text-slate-500">Straight to a human logistics desk — no cart, no checkout maze.</p>
+            </div>
+            <svg class="hidden h-5 w-5 shrink-0 text-gold-500 sm:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+            <div class="flex-1">
+              <p class="font-display font-bold text-ink">The maker is paid first</p>
+              <p class="mt-1 text-sm text-slate-500">At maximum global market value — their price, their name, their signature.</p>
+            </div>
+            <svg class="hidden h-5 w-5 shrink-0 text-gold-500 sm:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+            <div class="flex-1">
+              <p class="font-display font-bold text-ink">Margins fund the movement</p>
+              <p class="mt-1 text-sm text-slate-500">Every remaining rupee flows back into self-reliance infrastructure. We keep nothing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Media — narrower, offset, leaf-masked to keep brand continuity -->
+      <div class="lg:col-span-5">
+        <figure class="reveal leaf relative shadow-lift lg:-mb-8" style="--d:300ms">
+          <img src="https://images.unsplash.com/photo-1462927114214-6956d2fddd4e?q=80&w=1200&auto=format&fit=crop"
+               alt="An artisan's hands shaping clay on a spinning wheel"
+               class="h-[22rem] w-full object-cover sm:h-[26rem] lg:h-[30rem]" loading="eager" />
+          <figcaption class="absolute bottom-4 left-4 right-4 rounded-2xl bg-ink/80 px-5 py-3.5 text-pearl backdrop-blur">
+            <p class="font-display text-sm font-semibold">Hands don't need pity. They need a fair price.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CATALOG ══════════════════ -->
+<section id="catalog" class="relative bg-white py-16 lg:py-24">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+
+    <!-- Section head + filter row -->
+    <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+      <div class="max-w-xl">
+        <p class="reveal flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-teal-600">
+          <span class="h-2 w-2 rounded-full bg-gold-400"></span> The catalog
+        </p>
+        <h2 class="reveal mt-4 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl" style="--d:100ms">
+          Nine pieces. Nine names.<br class="hidden sm:block" /> Zero batch codes.
+        </h2>
+        <p class="reveal mt-4 text-slate-500" style="--d:200ms">
+          Filed by maker, not by SKU — because the person always comes before the product.
+        </p>
+      </div>
+
+      <!-- Filters -->
+      <nav class="reveal" aria-label="Filter catalog" style="--d:250ms">
+        <ul class="filter-row flex gap-7 overflow-x-auto whitespace-nowrap pb-1 text-[15px] font-medium">
+          <li><button data-filter="all" class="filter-btn border-b-2 border-gold-400 pb-1 font-semibold text-ink" aria-pressed="true">All Craft</button></li>
+          <li><button data-filter="weaves" class="filter-btn border-b-2 border-transparent pb-1 text-slate-500 transition-colors hover:text-ink" aria-pressed="false">Weaves</button></li>
+          <li><button data-filter="clay" class="filter-btn border-b-2 border-transparent pb-1 text-slate-500 transition-colors hover:text-ink" aria-pressed="false">Clay &amp; Kiln</button></li>
+          <li><button data-filter="wood" class="filter-btn border-b-2 border-transparent pb-1 text-slate-500 transition-colors hover:text-ink" aria-pressed="false">Wood &amp; Leather</button></li>
+          <li><button data-filter="adornment" class="filter-btn border-b-2 border-transparent pb-1 text-slate-500 transition-colors hover:text-ink" aria-pressed="false">Adornment</button></li>
+          <li><button data-filter="pantry" class="filter-btn border-b-2 border-transparent pb-1 text-slate-500 transition-colors hover:text-ink" aria-pressed="false">Pantry</button></li>
+        </ul>
+      </nav>
+    </div>
+
+    <p id="resultCount" class="reveal mt-8 text-sm font-medium text-slate-400" style="--d:300ms" aria-live="polite">Showing 9 pieces</p>
+
+    <!-- ── 3-column product grid ── -->
+    <div id="productGrid" class="mt-6 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+
+      <!-- 1 · Amna Bibi -->
+      <article class="product-card group" data-cat="weaves">
+        <div class="lift overflow-hidden rounded-2xl bg-teal-50 shadow-sm">
+          <div class="aspect-[4/5] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=1000&auto=format&fit=crop"
+                 alt="Folded handwoven shawls in natural light" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          </div>
+        </div>
+        <div class="mt-5 flex items-center gap-3">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold-100 font-display text-sm font-bold text-gold-700">AB</span>
+          <p class="text-[15px]"><span class="font-display font-bold text-ink">Amna Bibi</span> <span class="text-slate-500">· Jandiala Sher Khan node</span></p>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between gap-4">
+          <h3 class="font-display text-lg font-bold text-ink">Indigo Riverline Shawl</h3>
+          <p class="shrink-0 text-right">
+            <span class="font-display font-bold text-teal-700">PKR 8,400</span>
+            <span class="block text-xs text-slate-400">≈ $30 worldwide</span>
+          </p>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-500">
+          Three shawls a month now cover Amna's household outright — no middleman has touched her loom since 2024.
+        </p>
+        <a href="https://wa.me/923000000000?text=Assalam-o-Alaikum!%20Dispatch%20request%20from%20The%20Bazaar%20-%20Item:%20Indigo%20Riverline%20Shawl%20%7C%20Maker:%20Amna%20Bibi%20(Jandiala%20Sher%20Khan%20node).%20Please%20share%20availability%20and%20delivery%20details."
+           target="_blank" rel="noopener"
+           class="mt-4 flex w-full items-center justify-center gap-2.5 rounded-2xl bg-teal-800 py-3.5 font-semibold text-white transition-colors hover:bg-ink">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>
+          Dispatch via WhatsApp
+        </a>
+      </article>
+
+      <!-- 2 · Ustad Rafiq -->
+      <article class="product-card group" data-cat="clay">
+        <div class="lift overflow-hidden rounded-2xl bg-teal-50 shadow-sm">
+          <div class="aspect-[4/5] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1578500494198-246f612d3b3d?q=80&w=1000&auto=format&fit=crop"
+                 alt="Hand-thrown terracotta pots" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          </div>
+        </div>
+        <div class="mt-5 flex items-center gap-3">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold-100 font-display text-sm font-bold text-gold-700">UR</span>
+          <p class="text-[15px]"><span class="font-display font-bold text-ink">Ustad Rafiq</span> <span class="text-slate-500">· Sharaqpur Sharif node</span></p>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between gap-4">
+          <h3 class="font-display text-lg font-bold text-ink">Terracotta Water Pots · Set of 3</h3>
+          <p class="shrink-0 text-right">
+            <span class="font-display font-bold text-teal-700">PKR 3,600</span>
+            <span class="block text-xs text-slate-400">≈ $13 worldwide</span>
+          </p>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-500">
+          Rafiq's kiln fires under his own name now; each set you see funds the clay for the next ten.
+        </p>
+        <a href="https://wa.me/923000000000?text=Assalam-o-Alaikum!%20Dispatch%20request%20from%20The%20Bazaar%20-%20Item:%20Terracotta%20Water%20Pots%20(Set%20of%203)%20%7C%20Maker:%20Ustad%20Rafiq%20(Sharaqpur%20Sharif%20node).%20Please%20share%20availability%20and%20delivery%20details."
+           target="_blank" rel="noopener"
+           class="mt-4 flex w-full items-center justify-center gap-2.5 rounded-2xl bg-teal-800 py-3.5 font-semibold text-white transition-colors hover:bg-ink">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>
+          Dispatch via WhatsApp
+        </a>
+      </article>
+
+      <!-- 3 · Zubaida Mai -->
+      <article class="product-card group" data-cat="weaves">
+        <div class="lift overflow-hidden rounded-2xl bg-teal-50 shadow-sm">
+          <div class="aspect-[4/5] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?q=80&w=1000&auto=format&fit=crop"
+                 alt="Hand-dyed fabric hanging on a rail" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          </div>
+        </div>
+        <div class="mt-5 flex items-center gap-3">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold-100 font-display text-sm font-bold text-gold-700">ZM</span>
+          <p class="text-[15px]"><span class="font-display font-bold text-ink">Zubaida Mai</span> <span class="text-slate-500">· Farooqabad node</span></p>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between gap-4">
+          <h3 class="font-display text-lg font-bold text-ink">Hand-Dyed Ajrak Yardage</h3>
+          <p class="shrink-0 text-right">
+            <span class="font-display font-bold text-teal-700">PKR 6,200</span>
+            <span class="block text-xs text-slate-400">≈ $22 worldwide</span>
+          </p>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-500">
+          After a decade of underpaid piece-work, Zubaida sets her own rate — and her daughters watch her do it.
+        </p>
+        <a href="https://wa.me/923000000000?text=Assalam-o-Alaikum!%20Dispatch%20request%20from%20The%20Bazaar%20-%20Item:%20Hand-Dyed%20Ajrak%20Yardage%20%7C%20Maker:%20Zubaida%20Mai%20(Farooqabad%20node).%20Please%20share%20availability%20and%20delivery%20details."
+           target="_blank" rel="noopener"
+           class="mt-4 flex w-full items-center justify-center gap-2.5 rounded-2xl bg-teal-800 py-3.5 font-semibold text-white transition-colors hover:bg-ink">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>
+          Dispatch via WhatsApp
+        </a>
+      </article>
+
+      <!-- 4 · Noor Fatima -->
+      <article class="product-card group" data-cat="adornment">
+        <div class="lift overflow-hidden rounded-2xl bg-teal-50 shadow-sm">
+          <div class="aspect-[4/5] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1000&auto=format&fit=crop"
+                 alt="Handcrafted silver jewellery on dark cloth" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          </div>
+        </div>
+        <div class="mt-5 flex items-center gap-3">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold-100 font-display text-sm font-bold text-gold-700">NF</span>
+          <p class="text-[15px]"><span class="font-display font-bold text-ink">Noor Fatima</span> <span class="text-slate-500">· Muridke node</span></p>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between gap-4">
+          <h3 class="font-display text-lg font-bold text-ink">Hand-Set Silver Jhumkay</h3>
+          <p class="shrink-0 text-right">
+            <span class="font-display font-bold text-teal-700">PKR 9,800</span>
+            <span class="block text-xs text-slate-400">≈ $35 worldwide</span>
+          </p>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-500">
+          Noor's bench pays her brother's college fees — one pair at a time, priced like the silverwork it is.
+        </p>
+        <a href="https://wa.me/923000000000?text=Assalam-o-Alaikum!%20Dispatch%20request%20from%20The%20Bazaar%20-%20Item:%20Hand-Set%20Silver%20Jhumkay%20%7C%20Maker:%20Noor%20Fatima%20(Muridke%20node).%20Please%20share%20availability%20and%20delivery%20details."
+           target="_blank" rel="noopener"
+           class="mt-4 flex w-full items-center justify-center gap-2.5 rounded-2xl bg-teal-800 py-3.5 font-semibold text-white transition-colors hover:bg-ink">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>
+          Dispatch via WhatsApp
+        </a>
+      </article>
+
+      <!-- 5 · Ustad Bashir -->
+      <article class="product-card group" data-cat="wood">
+        <div class="lift overflow-hidden rounded-2xl bg-teal-50 shadow-sm">
+          <div class="aspect-[4/5] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1000&auto=format&fit=crop"
+                 alt="Carved wooden figurine in soft daylight" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          </div>
+        </div>
+        <div class="mt-5 flex items-center gap-3">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold-100 font-display text-sm font-bold text-gold-700">UB</span>
+          <p class="text-[15px]"><span class="font-display font-bold text-ink">Ustad Bashir</span> <span class="text-slate-500">· Khanqah Dogran node</span></p>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between gap-4">
+          <h3 class="font-display text-lg font-bold text-ink">Carved Sheesham Figurine</h3>
+          <p class="shrink-0 text-right">
+            <span class="font-display font-bold text-teal-700">PKR 5,500</span>
+            <span class="block text-xs text-slate-400">≈ $20 worldwide</span>
+          </p>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-500">
+          Forty years of carving finally carries Bashir's own signature — not a factory stamp.
+        </p>
+        <a href="https://wa.me/923000000000?text=Assalam-o-Alaikum!%20Dispatch%20request%20from%20The%20Bazaar%20-%20Item:%20Carved%20Sheesham%20Figurine%20%7C%20Maker:%20Ustad%20Bashir%20(Khanqah%20Dogran%20node).%20Please%20share%20availability%20and%20delivery%20details."
+           target="_blank" rel="noopener"
+           class="mt-4 flex w-full items-center justify-center gap-2.5 rounded-2xl bg-teal-800 py-3.5 font-semibold text-white transition-colors hover:bg-ink">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>
+          Dispatch via WhatsApp
+        </a>
+      </article>
+
+      <!-- 6 · Haji Sadiq -->
+      <article class="product-card group" data-cat="pantry">
+        <div class="lift overflow-hidden rounded-2xl bg-teal-50 shadow-sm">
+          <div class="aspect-[4/5] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=1000&auto=format&fit=crop"
+                 alt="Jars of raw honey with a wooden dipper" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          </div>
+        </div>
+        <div class="mt-5 flex items-center gap-3">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold-100 font-display text-sm font-bold text-gold-700">HS</span>
+          <p class="text-[15px]"><span class="font-display font-bold text-ink">Haji Sadiq</span> <span class="text-slate-500">· Sharaqpur Sharif node</span></p>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between gap-4">
+          <h3 class="font-display text-lg font-bold text-ink">Wild Berry Honey · 850g</h3>
+          <p class="shrink-0 text-right">
+            <span class="font-display font-bold text-teal-700">PKR 2,400</span>
+            <span class="block text-xs text-slate-400">≈ $9 worldwide</span>
+          </p>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-500">
+          Twelve hives were seeded once by the foundation. The harvest — and every rupee of profit — is entirely Sadiq's.
+        </p>
+        <a href="https://wa.me/923000000000?text=Assalam-o-Alaikum!%20Dispatch%20request%20from%20The%20Bazaar%20-%20Item:%20Wild%20Berry%20Honey%20(850g)%20%7C%20Maker:%20Haji%20Sadiq%20(Sharaqpur%20Sharif%20node).%20Please%20share%20availability%20and%20delivery%20details."
+           target="_blank" rel="noopener"
+           class="mt-4 flex w-full items-center justify-center gap-2.5 rounded-2xl bg-teal-800 py-3.5 font-semibold text-white transition-colors hover:bg-ink">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>
+          Dispatch via WhatsApp
+        </a>
+      </article>
+
+      <!-- 7 · Kausar Parveen -->
+      <article class="product-card group" data-cat="wood">
+        <div class="lift overflow-hidden rounded-2xl bg-teal-50 shadow-sm">
+          <div class="aspect-[4/5] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1000&auto=format&fit=crop"
+                 alt="Hand-stitched leather satchel in natural light" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          </div>
+        </div>
+        <div class="mt-5 flex items-center gap-3">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold-100 font-display text-sm font-bold text-gold-700">KP</span>
+          <p class="text-[15px]"><span class="font-display font-bold text-ink">Kausar Parveen</span> <span class="text-slate-500">· Ferozewala node</span></p>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between gap-4">
+          <h3 class="font-display text-lg font-bold text-ink">Hand-Stitched Leather Satchel</h3>
+          <p class="shrink-0 text-right">
+            <span class="font-display font-bold text-teal-700">PKR 11,000</span>
+            <span class="block text-xs text-slate-400">≈ $39 worldwide</span>
+          </p>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-500">
+          Kausar's workshop now apprentices two girls from her own street — paid from bags exactly like this one.
+        </p>
+        <a href="https://wa.me/923000000000?text=Assalam-o-Alaikum!%20Dispatch%20request%20from%20The%20Bazaar%20-%20Item:%20Hand-Stitched%20Leather%20Satchel%20%7C%20Maker:%20Kausar%20Parveen%20(Ferozewala%20node).%20Please%20share%20availability%20and%20delivery%20details."
+           target="_blank" rel="noopener"
+           class="mt-4 flex w-full items-center justify-center gap-2.5 rounded-2xl bg-teal-800 py-3.5 font-semibold text-white transition-colors hover:bg-ink">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>
+          Dispatch via WhatsApp
+        </a>
+      </article>
+
+      <!-- 8 · Shabana Kanwal -->
+      <article class="product-card group" data-cat="clay">
+        <div class="lift overflow-hidden rounded-2xl bg-teal-50 shadow-sm">
+          <div class="aspect-[4/5] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop"
+                 alt="Clay cup of steaming chai on a wooden table" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          </div>
+        </div>
+        <div class="mt-5 flex items-center gap-3">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold-100 font-display text-sm font-bold text-gold-700">SK</span>
+          <p class="text-[15px]"><span class="font-display font-bold text-ink">Shabana Kanwal</span> <span class="text-slate-500">· Safdarabad node</span></p>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between gap-4">
+          <h3 class="font-display text-lg font-bold text-ink">Matka Chai Set · 4 Cups</h3>
+          <p class="shrink-0 text-right">
+            <span class="font-display font-bold text-teal-700">PKR 2,900</span>
+            <span class="block text-xs text-slate-400">≈ $10 worldwide</span>
+          </p>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-500">
+          The set that made Shabana her village's first woman with a registered trade name of her own.
+        </p>
+        <a href="https://wa.me/923000000000?text=Assalam-o-Alaikum!%20Dispatch%20request%20from%20The%20Bazaar%20-%20Item:%20Matka%20Chai%20Set%20(4%20Cups)%20%7C%20Maker:%20Shabana%20Kanwal%20(Safdarabad%20node).%20Please%20share%20availability%20and%20delivery%20details."
+           target="_blank" rel="noopener"
+           class="mt-4 flex w-full items-center justify-center gap-2.5 rounded-2xl bg-teal-800 py-3.5 font-semibold text-white transition-colors hover:bg-ink">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>
+          Dispatch via WhatsApp
+        </a>
+      </article>
+
+      <!-- 9 · Saira Anwar -->
+      <article class="product-card group" data-cat="clay">
+        <div class="lift overflow-hidden rounded-2xl bg-teal-50 shadow-sm">
+          <div class="aspect-[4/5] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1462927114214-6956d2fddd4e?q=80&w=1000&auto=format&fit=crop"
+                 alt="A bowl being thrown by hand on the potter's wheel" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          </div>
+        </div>
+        <div class="mt-5 flex items-center gap-3">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold-100 font-display text-sm font-bold text-gold-700">SA</span>
+          <p class="text-[15px]"><span class="font-display font-bold text-ink">Saira Anwar</span> <span class="text-slate-500">· Jandiala Sher Khan node</span></p>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between gap-4">
+          <h3 class="font-display text-lg font-bold text-ink">Glazed Serving Bowl</h3>
+          <p class="shrink-0 text-right">
+            <span class="font-display font-bold text-teal-700">PKR 4,200</span>
+            <span class="block text-xs text-slate-400">≈ $15 worldwide</span>
+          </p>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-500">
+          Thrown, glazed, and priced by Saira herself — the first piece of hers ever sold beyond Punjab.
+        </p>
+        <a href="https://wa.me/923000000000?text=Assalam-o-Alaikum!%20Dispatch%20request%20from%20The%20Bazaar%20-%20Item:%20Glazed%20Serving%20Bowl%20%7C%20Maker:%20Saira%20Anwar%20(Jandiala%20Sher%20Khan%20node).%20Please%20share%20availability%20and%20delivery%20details."
+           target="_blank" rel="noopener"
+           class="mt-4 flex w-full items-center justify-center gap-2.5 rounded-2xl bg-teal-800 py-3.5 font-semibold text-white transition-colors hover:bg-ink">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>
+          Dispatch via WhatsApp
+        </a>
+      </article>
+    </div>
+
+    <!-- Logistics desk note -->
+    <div class="reveal mt-20 flex flex-col items-start gap-6 rounded-3xl border border-gold-200 bg-gold-50 p-8 sm:flex-row sm:items-center sm:p-10">
+      <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-ink text-gold-400">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.8-.9L3 20l1-5.2a8.4 8.4 0 1 1 17-3.3z"/><path d="M8 10h8M8 14h5"/></svg>
+      </span>
+      <div>
+        <h3 class="font-display text-xl font-bold text-ink">Why is there no cart?</h3>
+        <p class="mt-2 max-w-3xl leading-relaxed text-teal-900/80">
+          Because a cart can't answer questions, and a checkout page has never met a maker. Every dispatch request lands with a real person at our logistics desk in Sheikhupura — usually a volunteer sitting a few kilometres from the workshop itself. They confirm the piece, the timeline, and the delivery, human to human. Slower than an algorithm. Better in every other way.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CLOSING BAND ══════════════════ -->
+<section class="px-5 py-20 sm:px-8 lg:py-28">
+  <div class="relative mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-ink p-10 text-center shadow-lift sm:p-16">
+    <div class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-gold-500/20 blur-3xl" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-teal-700/40 blur-3xl" aria-hidden="true"></div>
+
+    <p class="reveal relative text-sm font-semibold uppercase tracking-[0.2em] text-gold-300">The point of all this</p>
+    <h2 class="reveal relative mx-auto mt-5 max-w-3xl font-display text-3xl font-bold leading-tight text-pearl sm:text-5xl" style="--d:100ms">
+      Every piece you request is a vote for someone's <span class="text-gold-300">independence.</span>
+    </h2>
+    <p class="reveal relative mx-auto mt-6 max-w-xl text-lg text-teal-100" style="--d:200ms">
+      And if you'd rather give hours than rupees — the movement always has room for one more pair of hands.
+    </p>
+    <div class="reveal relative mt-9 flex flex-wrap justify-center gap-4" style="--d:300ms">
+      <a href="index.html#join" class="rounded-full bg-gold-400 px-8 py-4 font-display text-lg font-semibold text-ink shadow-glow lift hover:bg-gold-300">Volunteer Instead</a>
+      <a href="index.html#frontlines" class="rounded-full border-2 border-teal-300/60 px-8 py-[0.9rem] font-display text-lg font-semibold text-pearl lift hover:bg-white/10">See All Active Systems</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="bg-teal-950 text-teal-200">
+  <div class="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+    <div class="grid gap-12 md:grid-cols-12">
+
+      <div class="md:col-span-5">
+        <a href="#top" class="flex items-center gap-3">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-gold-400 text-ink">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22v-8"/><path d="M12 14c0-4 2.5-6.5 7-7-.5 4.5-3 7-7 7z" fill="currentColor" stroke="none"/>
+              <path d="M12 14c0-4-2.5-6.5-7-7 .5 4.5 3 7 7 7z" fill="currentColor" stroke="none" opacity=".55"/>
+            </svg>
+          </span>
+          <span class="font-display text-xl font-bold text-pearl">Ghani Initiative · The Bazaar</span>
+        </a>
+        <p class="mt-5 max-w-sm text-[15px] leading-relaxed text-teal-300">
+          Direct global access from Sheikhupura, Punjab — replacing transactional charity with artisan mastery, one authentic piece at a time.
+        </p>
+      </div>
+
+      <nav class="md:col-span-3" aria-label="Footer — Organization">
+        <h4 class="font-display text-sm font-semibold uppercase tracking-[0.18em] text-pearl">Organization</h4>
+        <ul class="mt-5 space-y-3 text-[15px]">
+          <li><a href="#different" class="hover:text-gold-300 transition-colors">Why we're different</a></li>
+          <li><a href="#frontlines" class="hover:text-gold-300 transition-colors">Active frontlines</a></li>
+          <li><a href="bazaar.html" class="hover:text-gold-300 transition-colors">The Bazaar</a></li>
+          <li><a href="#join" class="hover:text-gold-300 transition-colors">Volunteer</a></li>
+          <li><a href="#" class="hover:text-gold-300 transition-colors">Pitch a branch</a></li>
+        </ul>
+      </nav>
+
+      <div class="md:col-span-4">
+        <h4 class="font-display text-sm font-semibold uppercase tracking-[0.18em] text-pearl">Follow the growth</h4>
+        <div class="mt-5 flex gap-3">
+          <a href="#" aria-label="Facebook" class="grid h-11 w-11 place-items-center rounded-2xl bg-white/5 text-teal-200 lift hover:bg-gold-400 hover:text-ink">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9V11H8v3h2.3v7h3.2z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="grid h-11 w-11 place-items-center rounded-2xl bg-white/5 text-teal-200 lift hover:bg-gold-400 hover:text-ink">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp" class="grid h-11 w-11 place-items-center rounded-2xl bg-white/5 text-teal-200 lift hover:bg-gold-400 hover:text-ink">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="grid h-11 w-11 place-items-center rounded-2xl bg-white/5 text-teal-200 lift hover:bg-gold-400 hover:text-ink">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.5 12 5.5 12 5.5s-6 0-7.9.6A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.6 7.9.6 7.9.6s6 0 7.9-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22.4 12 31 31 0 0 0 22 8.2zM10 15V9l5.2 3L10 15z"/></svg>
+          </a>
+        </div>
+        <p class="mt-6 text-sm text-teal-400">
+          <span class="font-urdu text-base">غنی</span> — because everyone deserves to need nothing.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-teal-400 sm:flex-row">
+      <p>© 2026 Ghani Initiative. Grown in Sheikhupura, shared with the world.</p>
+      <p>Built by volunteers, for the community.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════ VANILLA JS ══════════════════ -->
+<script>
+  // ── Mobile menu ──────────────────────────────────────────────
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.classList.toggle('menu-open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  document.querySelectorAll('.menu-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuBtn.classList.remove('menu-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ── Header shadow on scroll ──────────────────────────────────
+  const header = document.getElementById('siteHeader');
+  const onScroll = () => header.classList.toggle('shadow-lift', window.scrollY > 12);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ── Scroll-reveal (respects reduced motion) ──────────────────
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reveals = document.querySelectorAll('.reveal');
+
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    reveals.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(el => io.observe(el));
+  }
+
+  // ── Catalog filtering ────────────────────────────────────────
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.product-card');
+  const resultCount = document.getElementById('resultCount');
+
+  const activeClasses = ['border-gold-400', 'font-semibold', 'text-ink'];
+  const inactiveClasses = ['border-transparent', 'text-slate-500'];
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Toggle button states
+      filterBtns.forEach(b => {
+        b.classList.remove(...activeClasses);
+        b.classList.add(...inactiveClasses);
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.remove(...inactiveClasses);
+      btn.classList.add(...activeClasses);
+      btn.setAttribute('aria-pressed', 'true');
+
+      // Filter cards with a soft fade
+      const cat = btn.dataset.filter;
+      let visible = 0;
+
+      cards.forEach(card => {
+        const match = cat === 'all' || card.dataset.cat === cat;
+        if (match) {
+          visible++;
+          card.classList.remove('hidden');
+          requestAnimationFrame(() => requestAnimationFrame(() => card.classList.remove('filter-out')));
+        } else {
+          card.classList.add('filter-out');
+          if (prefersReduced) {
+            card.classList.add('hidden');
+          } else {
+            setTimeout(() => { if (card.classList.contains('filter-out')) card.classList.add('hidden'); }, 250);
+          }
+        }
+      });
+
+      resultCount.textContent = `Showing ${visible} piece${visible === 1 ? '' : 's'}`;
+    });
+  });
+</script>
+
+</body>
+</html>
