@@ -5,6 +5,12 @@
       "artisan": "Ali Abbas",
       "price": "23,400",
       "image": "/assets/images/bg-science.jpg"
+    },
+    {
+      "title": "The potery bla bla",
+      "artisan": "Haji Ahmed",
+      "price": "2,300",
+      "image": "/assets/images/54374.jpg"
     }
   ]
 }
