@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Active Frontiers — Ghani Welfare · The Ledger of Action on the Ground</title>
+<meta name="description" content="A raw documentary photo essay of Ghani Welfare's work in motion: reforestation across Sheikhupura, independent micro-enterprise assets, and artisan direct-trade." />
+
+<!-- Fonts (identical to site system) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet" />
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          pearl: '#F7FAF9',
+          ink:   '#06302E',
+          teal: {
+            50:'#EEF6F5', 100:'#DDEDEB', 200:'#BBDBD7', 300:'#8FC3BD',
+            400:'#4E9D95', 500:'#177E78', 600:'#0F6863', 700:'#0C5450',
+            800:'#0A4340', 900:'#083634', 950:'#052422'
+          },
+          gold: {
+            50:'#FDF8EA', 100:'#FAEEC8', 200:'#F5DD8E', 300:'#EFC64D',
+            400:'#EAB023', 500:'#D99A0E', 600:'#BB7A09', 700:'#955C0B'
+          }
+        },
+        fontFamily: {
+          display: ['"Bricolage Grotesque"', 'sans-serif'],
+          sans: ['"Instrument Sans"', 'sans-serif'],
+          urdu: ['"Noto Nastaliq Urdu"', 'serif']
+        },
+        boxShadow: {
+          lift: '0 18px 40px -18px rgba(6,48,46,0.28)',
+          glow: '0 10px 30px -10px rgba(234,176,35,0.55)'
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-padding-top: 5.5rem; }
+  body { -webkit-font-smoothing: antialiased; }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1);
+    transition-delay: var(--d, 0ms);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* Hover lift */
+  .lift { transition: transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s; }
+  .lift:hover { transform: translateY(-6px); }
+
+  /* ── Frontline block rhythm: every pasted block auto-spaces itself ── */
+  .frontline-block + .frontline-block {
+    border-top: 1px solid #DDEDEB;
+    margin-top: 6rem;
+    padding-top: 6rem;
+  }
+
+  /* ── Carousel track: native swipe via scroll-snap, scrollbar hidden ── */
+  .car-track {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .car-track::-webkit-scrollbar { display: none; }
+  .car-slide { scroll-snap-align: center; scroll-snap-stop: always; }
+
+  /* Carousel dots */
+  .car-dot { transition: width .35s cubic-bezier(.22,.61,.36,1), background-color .35s; }
+
+  /* Video overlay fade */
+  #videoOverlay { transition: opacity .45s ease; }
+  #videoOverlay.playing { opacity: 0; pointer-events: none; }
+
+  /* Hamburger morph */
+  .bar { transition: transform .3s ease, opacity .3s ease; transform-origin: center; }
+  .menu-open .bar-1 { transform: translateY(7px) rotate(45deg); }
+  .menu-open .bar-2 { opacity: 0; }
+  .menu-open .bar-3 { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile menu slide */
+  #mobileMenu { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s cubic-bezier(.22,.61,.36,1); }
+  #mobileMenu.open { grid-template-rows: 1fr; }
+  #mobileMenu > div { overflow: hidden; }
+
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid #EAB023; outline-offset: 3px; border-radius: .5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .lift, .lift:hover { transition: none; transform: none; }
+    .car-dot { transition: none; }
+    #videoOverlay { transition: none; }
+  }
+</style>
+</head>
+
+<body class="bg-pearl font-sans text-teal-900 selection:bg-gold-200 selection:text-ink">
+
+<!-- ══════════════════ NAVIGATION (site-uniform) ══════════════════ -->
+<header id="siteHeader" class="fixed inset-x-0 top-0 z-50 transition-shadow duration-300">
+  <div class="bg-white/60 backdrop-blur-xl border-b border-white/50">
+    <nav class="mx-auto max-w-7xl px-5 sm:px-8" aria-label="Main">
+      <div class="flex h-[4.5rem] items-center justify-between gap-6">
+
+        <a href="index.html" class="flex items-center gap-3 group">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-ink text-gold-400 shadow-lift">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22v-8"/><path d="M12 14c0-4 2.5-6.5 7-7-.5 4.5-3 7-7 7z" fill="currentColor" stroke="none"/>
+              <path d="M12 14c0-4-2.5-6.5-7-7 .5 4.5 3 7 7 7z" fill="currentColor" stroke="none" opacity=".55"/>
+            </svg>
+          </span>
+          <span class="font-display text-xl font-bold tracking-tight text-ink">Ghani <span class="text-teal-600">Welfare</span></span>
+        </a>
+
+        <div class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-teal-800">
+          <a href="why-different.html" class="hover:text-ink transition-colors">Why We're Different</a>
+          <a href="frontiers.html" aria-current="page"
+             class="font-semibold text-ink underline decoration-gold-400 decoration-2 underline-offset-8">Active Frontiers</a>
+          <a href="bazaar.html" class="hover:text-ink transition-colors">The Bazaar</a>
+          <a href="join.html" class="hover:text-ink transition-colors">Volunteer</a>
+          <a href="join.html"
+             class="rounded-full bg-gold-400 px-6 py-2.5 font-semibold text-ink shadow-glow lift hover:bg-gold-300">
+            Join the Movement
+          </a>
+        </div>
+
+        <button id="menuBtn" class="lg:hidden grid h-11 w-11 place-items-center rounded-xl bg-ink/5"
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+          <span class="flex flex-col gap-[5px]">
+            <span class="bar bar-1 block h-[2px] w-6 rounded-full bg-ink"></span>
+            <span class="bar bar-2 block h-[2px] w-6 rounded-full bg-ink"></span>
+            <span class="bar bar-3 block h-[2px] w-6 rounded-full bg-ink"></span>
+          </span>
+        </button>
+      </div>
+
+      <div id="mobileMenu">
+        <div>
+          <div class="flex flex-col gap-1 pb-6 pt-2 text-lg font-medium text-teal-900">
+            <a href="why-different.html" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Why We're Different</a>
+            <a href="frontiers.html" aria-current="page" class="menu-link rounded-xl bg-teal-50 px-4 py-3 font-semibold text-ink">Active Frontiers</a>
+            <a href="bazaar.html" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">The Bazaar</a>
+            <a href="join.html" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Volunteer</a>
+            <a href="join.html" class="menu-link mt-2 rounded-full bg-gold-400 px-6 py-3.5 text-center font-semibold text-ink shadow-glow">
+              Join the Movement
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════════════════ THE CINEMATIC ANCHOR ══════════════════ -->
+<section class="pt-[6.5rem] lg:pt-[8rem]">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <figure class="reveal relative overflow-hidden rounded-3xl bg-ink shadow-lift ring-1 ring-teal-100">
+      <div class="aspect-[16/9]">
+        <!-- Replace src with your documentary reel; the poster holds the frame until then -->
+        <video id="heroVideo" class="h-full w-full object-cover" playsinline preload="metadata"
+               poster="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=2000&auto=format&fit=crop">
+          <source src="assets/frontiers-reel.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <!-- Overlay: scrim, text layer, play control -->
+      <div id="videoOverlay" class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink/85 via-ink/25 to-transparent">
+        <button id="playBtn" aria-label="Play documentary reel"
+                class="absolute left-1/2 top-1/2 grid h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/40 bg-white/10 text-gold-300 backdrop-blur-md transition-transform duration-300 hover:scale-110 sm:h-24 sm:w-24">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5z"/></svg>
+        </button>
+
+        <div class="p-7 sm:p-10 lg:p-14">
+          <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-gold-300">Raw documentary reel — field footage</p>
+          <h1 class="mt-4 font-display text-5xl font-bold tracking-tight text-pearl sm:text-7xl lg:text-8xl">Active Frontiers<span class="text-gold-400">.</span></h1>
+          <p class="mt-4 max-w-xl text-lg leading-relaxed text-teal-100 sm:text-xl">
+            We don't talk about infrastructure. We deploy it. The ledger of action on the ground.
+          </p>
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ══════════════════ FRONTLINE DEPLOYMENT BLOCKS ══════════════════ -->
+<section class="relative overflow-hidden py-24 lg:py-32">
+  <!-- Page ghost mark: میدان (maidan) — the field -->
+  <div class="pointer-events-none absolute -right-10 top-6 select-none font-urdu text-[11rem] leading-none text-teal-900/[0.04] lg:text-[18rem]" aria-hidden="true">میدان</div>
+
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+
+    <div class="max-w-2xl">
+      <p class="reveal flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-teal-600">
+        <span class="h-2 w-2 rounded-full bg-gold-400"></span> The ledger, in photographs
+      </p>
+      <p class="reveal mt-4 text-lg leading-relaxed text-slate-500" style="--d:100ms">
+        Every block below is a live deployment — unposed, unfiltered, shot by the crews themselves. New frontiers append here as they launch.
+      </p>
+    </div>
+
+    <div class="mt-16">
+
+      <!-- ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚
+           FRONTLINE DEPLOYMENT BLOCK — REFORESTATION
+           Modular: copy this whole <article> to launch a new frontier.
+           To add a slide: duplicate one .car-slide AND one .car-dot —
+           the script wires everything up automatically.
+           Mobile stack: text first, swipeable carousel second (DOM order).
+      ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚ -->
+      <article class="frontline-block reveal grid gap-10 lg:grid-cols-12 lg:gap-12">
+
+        <!-- The Information Layer -->
+        <div class="lg:col-span-5">
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-gold-600">Frontline — Canopy</p>
+          <h2 class="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
+            Reforestation &amp;<br />Ecosystem Recovery
+          </h2>
+          <p class="mt-5 max-w-md text-lg leading-relaxed text-slate-600">
+            Bare canal banks and sun-baked schoolyards across Sheikhupura, replanted with native neem, sheesham, jamun, and amaltas — then hand-watered through the summers and re-walked until each tree can hold its ground alone.
+          </p>
+
+          <div class="mt-8">
+            <p class="border-b border-teal-100 pb-3 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-teal-700">Active on this front</p>
+            <ul class="divide-y divide-teal-100">
+              <li class="flex flex-wrap items-baseline justify-between gap-x-4 py-3">
+                <span class="font-display font-bold text-ink">Iqra Shahid</span>
+                <span class="font-mono text-[11px] uppercase tracking-wide text-slate-400">Survival Audits</span>
+              </li>
+              <li class="flex flex-wrap items-baseline justify-between gap-x-4 py-3">
+                <span class="font-display font-bold text-ink">Danish Ali</span>
+                <span class="font-mono text-[11px] uppercase tracking-wide text-slate-400">Nursery · Jandiala</span>
+              </li>
+              <li class="flex flex-wrap items-baseline justify-between gap-x-4 py-3">
+                <span class="font-display font-bold text-ink">Sana Ullah</span>
+                <span class="font-mono text-[11px] uppercase tracking-wide text-slate-400">Watering Rota</span>
+              </li>
+              <li class="flex flex-wrap items-baseline justify-between gap-x-4 py-3">
+                <span class="font-display font-bold text-ink">Rabia Noor</span>
+                <span class="font-mono text-[11px] uppercase tracking-wide text-slate-400">School Groves</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- The Multi-Photo Carousel Layer -->
+        <div class="lg:col-span-7" data-carousel>
+          <div class="car-track flex overflow-x-auto rounded-2xl ring-1 ring-teal-100" tabindex="0" aria-label="Reforestation deployment photographs">
+            <div class="car-slide w-full shrink-0" data-caption="Seedling transfer — canal bank, Farooqabad stretch">
+              <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1400&auto=format&fit=crop"
+                   alt="Hands pressing a seedling into dark soil" class="aspect-[4/3] w-full object-cover" loading="lazy" />
+            </div>
+            <div class="car-slide w-full shrink-0" data-caption="New growth — first monsoon after planting">
+              <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1400&auto=format&fit=crop"
+                   alt="Fresh green leaves of a young tree" class="aspect-[4/3] w-full object-cover" loading="lazy" />
+            </div>
+            <div class="car-slide w-full shrink-0" data-caption="A grove maturing — the point of all of it">
+              <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1400&auto=format&fit=crop"
+                   alt="Sunlight breaking through a maturing grove" class="aspect-[4/3] w-full object-cover" loading="lazy" />
+            </div>
+          </div>
+          <div class="mt-4 flex items-center justify-between gap-6">
+            <p class="car-caption min-h-[1.25rem] flex-1 font-mono text-[11px] uppercase tracking-[0.18em] text-slate-400"></p>
+            <div class="flex shrink-0 items-center gap-2" role="group" aria-label="Slide selector">
+              <button class="car-dot h-[3px] w-6 rounded-full bg-teal-200" aria-label="Show first photograph"></button>
+              <button class="car-dot h-[3px] w-6 rounded-full bg-teal-200" aria-label="Show second photograph"></button>
+              <button class="car-dot h-[3px] w-6 rounded-full bg-teal-200" aria-label="Show third photograph"></button>
+            </div>
+          </div>
+        </div>
+      </article>
+      <!-- ▚▚ END FRONTLINE DEPLOYMENT BLOCK — REFORESTATION ▚▚ -->
+
+      <!-- ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚
+           FRONTLINE DEPLOYMENT BLOCK — MICRO-ENTERPRISE
+      ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚ -->
+      <article class="frontline-block reveal grid gap-10 lg:grid-cols-12 lg:gap-12">
+
+        <div class="lg:col-span-5">
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-gold-600">Frontline — Engines</p>
+          <h2 class="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
+            Micro-Enterprise &amp;<br />Independent Assets
+          </h2>
+          <p class="mt-5 max-w-md text-lg leading-relaxed text-slate-600">
+            Fully outfitted mobile fruit carts — welded, stocked, licensed, and route-walked — handed over as working businesses, not aid. The owner sets the prices. The takings never touch our hands.
+          </p>
+
+          <div class="mt-8">
+            <p class="border-b border-teal-100 pb-3 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-teal-700">Active on this front</p>
+            <ul class="divide-y divide-teal-100">
+              <li class="flex flex-wrap items-baseline justify-between gap-x-4 py-3">
+                <span class="font-display font-bold text-ink">Usman Ghani</span>
+                <span class="font-mono text-[11px] uppercase tracking-wide text-slate-400">Cart Assembly</span>
+              </li>
+              <li class="flex flex-wrap items-baseline justify-between gap-x-4 py-3">
+                <span class="font-display font-bold text-ink">Ayesha Malik</span>
+                <span class="font-mono text-[11px] uppercase tracking-wide text-slate-400">Vendor Paperwork</span>
+              </li>
+              <li class="flex flex-wrap items-baseline justify-between gap-x-4 py-3">
+                <span class="font-display font-bold text-ink">Tayyab Hussain</span>
+                <span class="font-mono text-[11px] uppercase tracking-wide text-slate-400">Route Planning</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7" data-carousel>
+          <div class="car-track flex overflow-x-auto rounded-2xl ring-1 ring-teal-100" tabindex="0" aria-label="Micro-enterprise deployment photographs">
+            <div class="car-slide w-full shrink-0" data-caption="First stock loaded — handover morning, Muridke">
+              <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?q=80&w=1400&auto=format&fit=crop"
+                   alt="A cart stacked with fresh produce ready for its route" class="aspect-[4/3] w-full object-cover" loading="lazy" />
+            </div>
+            <div class="car-slide w-full shrink-0" data-caption="Keys, license, ownership — the handover itself">
+              <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1400&auto=format&fit=crop"
+                   alt="Two people shaking hands over a completed handover" class="aspect-[4/3] w-full object-cover" loading="lazy" />
+            </div>
+            <div class="car-slide w-full shrink-0" data-caption="A route in motion — trading on its own terms">
+              <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1400&auto=format&fit=crop"
+                   alt="Fresh produce laid out for sale at a busy stall" class="aspect-[4/3] w-full object-cover" loading="lazy" />
+            </div>
+          </div>
+          <div class="mt-4 flex items-center justify-between gap-6">
+            <p class="car-caption min-h-[1.25rem] flex-1 font-mono text-[11px] uppercase tracking-[0.18em] text-slate-400"></p>
+            <div class="flex shrink-0 items-center gap-2" role="group" aria-label="Slide selector">
+              <button class="car-dot h-[3px] w-6 rounded-full bg-teal-200" aria-label="Show first photograph"></button>
+              <button class="car-dot h-[3px] w-6 rounded-full bg-teal-200" aria-label="Show second photograph"></button>
+              <button class="car-dot h-[3px] w-6 rounded-full bg-teal-200" aria-label="Show third photograph"></button>
+            </div>
+          </div>
+        </div>
+      </article>
+      <!-- ▚▚ END FRONTLINE DEPLOYMENT BLOCK — MICRO-ENTERPRISE ▚▚ -->
+
+      <!-- ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚
+           FRONTLINE DEPLOYMENT BLOCK — ARTISAN DIRECT-TRADE
+      ▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚▚ -->
+      <article class="frontline-block reveal grid gap-10 lg:grid-cols-12 lg:gap-12">
+
+        <div class="lg:col-span-5">
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-gold-600">Frontline — Craft</p>
+          <h2 class="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
+            Artisan Craft &amp;<br />Digital Direct-Trade
+          </h2>
+          <p class="mt-5 max-w-md text-lg leading-relaxed text-slate-600">
+            Village workshops photographed, catalogued, and connected straight to buyers through the Bazaar — makers paid first at full global value, every dispatch walked by a human logistics desk a few kilometres from the kiln.
+          </p>
+
+          <div class="mt-8">
+            <p class="border-b border-teal-100 pb-3 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-teal-700">Active on this front</p>
+            <ul class="divide-y divide-teal-100">
+              <li class="flex flex-wrap items-baseline justify-between gap-x-4 py-3">
+                <span class="font-display font-bold text-ink">Mehak Zafar</span>
+                <span class="font-mono text-[11px] uppercase tracking-wide text-slate-400">Dispatch Logistics</span>
+              </li>
+              <li class="flex flex-wrap items-baseline justify-between gap-x-4 py-3">
+                <span class="font-display font-bold text-ink">Farhan Aslam</span>
+                <span class="font-mono text-[11px] uppercase tracking-wide text-slate-400">Sourcing Runs</span>
+              </li>
+              <li class="flex flex-wrap items-baseline justify-between gap-x-4 py-3">
+                <span class="font-display font-bold text-ink">Hania Yousaf</span>
+                <span class="font-mono text-[11px] uppercase tracking-wide text-slate-400">Craft Photography</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7" data-carousel>
+          <div class="car-track flex overflow-x-auto rounded-2xl ring-1 ring-teal-100" tabindex="0" aria-label="Artisan direct-trade photographs">
+            <div class="car-slide w-full shrink-0" data-caption="At the wheel — a serving bowl taking shape, Jandiala">
+              <img src="https://images.unsplash.com/photo-1462927114214-6956d2fddd4e?q=80&w=1400&auto=format&fit=crop"
+                   alt="An artisan's hands shaping clay on a spinning wheel" class="aspect-[4/3] w-full object-cover" loading="lazy" />
+            </div>
+            <div class="car-slide w-full shrink-0" data-caption="Silverwork on the bench — priced by its maker">
+              <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1400&auto=format&fit=crop"
+                   alt="Handcrafted silver jewellery laid on dark cloth" class="aspect-[4/3] w-full object-cover" loading="lazy" />
+            </div>
+            <div class="car-slide w-full shrink-0" data-caption="Packed for dispatch — loom to doorstep, no middlemen">
+              <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=1400&auto=format&fit=crop"
+                   alt="Folded handwoven textiles ready for dispatch" class="aspect-[4/3] w-full object-cover" loading="lazy" />
+            </div>
+          </div>
+          <div class="mt-4 flex items-center justify-between gap-6">
+            <p class="car-caption min-h-[1.25rem] flex-1 font-mono text-[11px] uppercase tracking-[0.18em] text-slate-400"></p>
+            <div class="flex shrink-0 items-center gap-2" role="group" aria-label="Slide selector">
+              <button class="car-dot h-[3px] w-6 rounded-full bg-teal-200" aria-label="Show first photograph"></button>
+              <button class="car-dot h-[3px] w-6 rounded-full bg-teal-200" aria-label="Show second photograph"></button>
+              <button class="car-dot h-[3px] w-6 rounded-full bg-teal-200" aria-label="Show third photograph"></button>
+            </div>
+          </div>
+        </div>
+      </article>
+      <!-- ▚▚ END FRONTLINE DEPLOYMENT BLOCK — ARTISAN DIRECT-TRADE ▚▚ -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ THE HORIZON LOOP (CTA) ══════════════════ -->
+<section class="px-5 pb-24 sm:px-8 lg:pb-32">
+  <div class="reveal relative mx-auto max-w-7xl rounded-3xl border-2 border-ink p-10 sm:p-16 lg:p-24">
+    <!-- Corner registration marks -->
+    <span class="absolute left-5 top-5 h-3 w-3 border-l-2 border-t-2 border-gold-400" aria-hidden="true"></span>
+    <span class="absolute right-5 top-5 h-3 w-3 border-r-2 border-t-2 border-gold-400" aria-hidden="true"></span>
+    <span class="absolute bottom-5 left-5 h-3 w-3 border-b-2 border-l-2 border-gold-400" aria-hidden="true"></span>
+    <span class="absolute bottom-5 right-5 h-3 w-3 border-b-2 border-r-2 border-gold-400" aria-hidden="true"></span>
+
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-teal-600">The horizon loop</p>
+      <h2 class="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-6xl">
+        You've seen the coordinates.<br />
+        <span class="text-teal-600">Now choose your lane.</span>
+      </h2>
+      <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
+        Every photograph on this page has a pair of hands just outside the frame. The next frame has room for yours.
+      </p>
+      <a href="join.html"
+         class="mt-10 inline-block rounded-full bg-gold-400 px-10 py-4 font-display text-lg font-semibold text-ink shadow-glow lift hover:bg-gold-300">
+        Choose Your Lane
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════ FOOTER (site-uniform, condensed) ══════════════════ -->
+<footer class="bg-teal-950 text-teal-200">
+  <div class="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+    <div class="flex flex-col items-start justify-between gap-10 md:flex-row md:items-center">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="grid h-10 w-10 place-items-center rounded-2xl bg-gold-400 text-ink">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22v-8"/><path d="M12 14c0-4 2.5-6.5 7-7-.5 4.5-3 7-7 7z" fill="currentColor" stroke="none"/>
+            <path d="M12 14c0-4-2.5-6.5-7-7 .5 4.5 3 7 7 7z" fill="currentColor" stroke="none" opacity=".55"/>
+          </svg>
+        </span>
+        <span class="font-display text-xl font-bold text-pearl">Ghani Welfare · Active Frontiers</span>
+      </a>
+
+      <nav aria-label="Footer">
+        <ul class="flex flex-wrap gap-x-8 gap-y-3 text-[15px]">
+          <li><a href="why-different.html" class="hover:text-gold-300 transition-colors">Why We're Different</a></li>
+          <li><a href="frontiers.html" class="text-gold-300">Active Frontiers</a></li>
+          <li><a href="bazaar.html" class="hover:text-gold-300 transition-colors">The Bazaar</a></li>
+          <li><a href="team.html" class="hover:text-gold-300 transition-colors">Volunteers &amp; Team</a></li>
+          <li><a href="join.html" class="hover:text-gold-300 transition-colors">Volunteer</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-teal-400 sm:flex-row">
+      <p>© 2026 Ghani Welfare. The ledger of action on the ground.</p>
+      <p><span class="font-urdu text-base">میدان</span> — meet us in the field.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════ VANILLA JS ══════════════════ -->
+<script>
+  // ── Mobile menu ──────────────────────────────────────────────
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.classList.toggle('menu-open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  document.querySelectorAll('.menu-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuBtn.classList.remove('menu-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ── Header shadow on scroll ──────────────────────────────────
+  const header = document.getElementById('siteHeader');
+  const onScroll = () => header.classList.toggle('shadow-lift', window.scrollY > 12);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ── Scroll-reveal (respects reduced motion) ──────────────────
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reveals = document.querySelectorAll('.reveal');
+
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    reveals.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(el => io.observe(el));
+  }
+
+  // ── Cinematic anchor: play / pause overlay ───────────────────
+  const video = document.getElementById('heroVideo');
+  const overlay = document.getElementById('videoOverlay');
+  const playBtn = document.getElementById('playBtn');
+
+  function togglePlayback() {
+    if (video.paused) {
+      video.play().then(() => overlay.classList.add('playing'))
+                  .catch(() => {/* no source yet — overlay stays, frame holds */});
+    } else {
+      video.pause();
+    }
+  }
+  playBtn.addEventListener('click', togglePlayback);
+  video.addEventListener('click', togglePlayback);
+  video.addEventListener('pause', () => overlay.classList.remove('playing'));
+  video.addEventListener('ended', () => overlay.classList.remove('playing'));
+
+  // ── Minimalist carousels (modular — auto-wires every [data-carousel]) ──
+  // Copy-paste a whole Frontline Deployment Block and this initializer
+  // picks it up automatically. Keep one .car-dot per .car-slide.
+  document.querySelectorAll('[data-carousel]').forEach(root => {
+    const track  = root.querySelector('.car-track');
+    const slides = Array.from(track.querySelectorAll('.car-slide'));
+    const dots   = Array.from(root.querySelectorAll('.car-dot'));
+    const cap    = root.querySelector('.car-caption');
+    let current  = -1;
+
+    function setActive(i) {
+      i = Math.max(0, Math.min(i, slides.length - 1));
+      if (i === current) return;
+      current = i;
+      dots.forEach((d, j) => {
+        const on = j === i;
+        d.classList.toggle('w-10', on);
+        d.classList.toggle('bg-gold-400', on);
+        d.classList.toggle('w-6', !on);
+        d.classList.toggle('bg-teal-200', !on);
+        d.setAttribute('aria-current', on ? 'true' : 'false');
+      });
+      if (cap) cap.textContent = slides[i].dataset.caption || '';
+    }
+
+    // Dot navigation → scroll the track (snap handles the landing)
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: prefersReduced ? 'auto' : 'smooth' });
+        setActive(i);
+      });
+    });
+
+    // Touch swipe / trackpad → sync the dots after scrolling settles
+    let settle;
+    track.addEventListener('scroll', () => {
+      clearTimeout(settle);
+      settle = setTimeout(() => setActive(Math.round(track.scrollLeft / track.clientWidth)), 90);
+    }, { passive: true });
+
+    // Keyboard support when the track is focused
+    track.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); dots[Math.min(current + 1, slides.length - 1)].click(); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); dots[Math.max(current - 1, 0)].click(); }
+    });
+
+    setActive(0);
+  });
+</script>
+
+</body>
+</html>

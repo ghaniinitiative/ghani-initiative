@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Volunteers &amp; Team — Ghani Welfare · The People Doing the Actual Work</title>
+<meta name="description" content="The crews behind Ghani Welfare: the Canopy Crew planting Sheikhupura, the Enterprise Support unit assembling mobile businesses, and the individuals who went far beyond." />
+
+<!-- Fonts (identical to site system) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet" />
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          pearl: '#F7FAF9',
+          ink:   '#06302E',
+          teal: {
+            50:'#EEF6F5', 100:'#DDEDEB', 200:'#BBDBD7', 300:'#8FC3BD',
+            400:'#4E9D95', 500:'#177E78', 600:'#0F6863', 700:'#0C5450',
+            800:'#0A4340', 900:'#083634', 950:'#052422'
+          },
+          gold: {
+            50:'#FDF8EA', 100:'#FAEEC8', 200:'#F5DD8E', 300:'#EFC64D',
+            400:'#EAB023', 500:'#D99A0E', 600:'#BB7A09', 700:'#955C0B'
+          }
+        },
+        fontFamily: {
+          display: ['"Bricolage Grotesque"', 'sans-serif'],
+          sans: ['"Instrument Sans"', 'sans-serif'],
+          urdu: ['"Noto Nastaliq Urdu"', 'serif']
+        },
+        boxShadow: {
+          lift: '0 18px 40px -18px rgba(6,48,46,0.28)',
+          glow: '0 10px 30px -10px rgba(234,176,35,0.55)'
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-padding-top: 5.5rem; }
+  body { -webkit-font-smoothing: antialiased; }
+
+  /* Leaf mask — brand signature for media */
+  .leaf { border-radius: 1.75rem 7rem 1.75rem 7rem; overflow: hidden; }
+  .leaf-flip { border-radius: 7rem 1.75rem 7rem 1.75rem; overflow: hidden; }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1);
+    transition-delay: var(--d, 0ms);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* Hover lift */
+  .lift { transition: transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s; }
+  .lift:hover { transform: translateY(-6px); }
+
+  /* Hamburger morph */
+  .bar { transition: transform .3s ease, opacity .3s ease; transform-origin: center; }
+  .menu-open .bar-1 { transform: translateY(7px) rotate(45deg); }
+  .menu-open .bar-2 { opacity: 0; }
+  .menu-open .bar-3 { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile menu slide */
+  #mobileMenu { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s cubic-bezier(.22,.61,.36,1); }
+  #mobileMenu.open { grid-template-rows: 1fr; }
+  #mobileMenu > div { overflow: hidden; }
+
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid #EAB023; outline-offset: 3px; border-radius: .5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .lift, .lift:hover { transition: none; transform: none; }
+  }
+</style>
+</head>
+
+<body class="bg-pearl font-sans text-teal-900 selection:bg-gold-200 selection:text-ink">
+
+<!-- ══════════════════ NAVIGATION (site-uniform) ══════════════════ -->
+<header id="siteHeader" class="fixed inset-x-0 top-0 z-50 transition-shadow duration-300">
+  <div class="bg-white/60 backdrop-blur-xl border-b border-white/50">
+    <nav class="mx-auto max-w-7xl px-5 sm:px-8" aria-label="Main">
+      <div class="flex h-[4.5rem] items-center justify-between gap-6">
+
+        <a href="index.html" class="flex items-center gap-3 group">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-ink text-gold-400 shadow-lift">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22v-8"/><path d="M12 14c0-4 2.5-6.5 7-7-.5 4.5-3 7-7 7z" fill="currentColor" stroke="none"/>
+              <path d="M12 14c0-4-2.5-6.5-7-7 .5 4.5 3 7 7 7z" fill="currentColor" stroke="none" opacity=".55"/>
+            </svg>
+          </span>
+          <span class="font-display text-xl font-bold tracking-tight text-ink">Ghani <span class="text-teal-600">Welfare</span></span>
+        </a>
+
+        <div class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-teal-800">
+          <a href="why-different.html" class="hover:text-ink transition-colors">Why We're Different</a>
+          <a href="index.html#frontlines" class="hover:text-ink transition-colors">Active Frontlines</a>
+          <a href="bazaar.html" class="hover:text-ink transition-colors">The Bazaar</a>
+          <a href="join.html" class="hover:text-ink transition-colors">Volunteer</a>
+          <a href="join.html"
+             class="rounded-full bg-gold-400 px-6 py-2.5 font-semibold text-ink shadow-glow lift hover:bg-gold-300">
+            Join the Movement
+          </a>
+        </div>
+
+        <button id="menuBtn" class="lg:hidden grid h-11 w-11 place-items-center rounded-xl bg-ink/5"
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+          <span class="flex flex-col gap-[5px]">
+            <span class="bar bar-1 block h-[2px] w-6 rounded-full bg-ink"></span>
+            <span class="bar bar-2 block h-[2px] w-6 rounded-full bg-ink"></span>
+            <span class="bar bar-3 block h-[2px] w-6 rounded-full bg-ink"></span>
+          </span>
+        </button>
+      </div>
+
+      <div id="mobileMenu">
+        <div>
+          <div class="flex flex-col gap-1 pb-6 pt-2 text-lg font-medium text-teal-900">
+            <a href="why-different.html" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Why We're Different</a>
+            <a href="index.html#frontlines" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Active Frontlines</a>
+            <a href="bazaar.html" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">The Bazaar</a>
+            <a href="join.html" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Volunteer</a>
+            <a href="join.html" class="menu-link mt-2 rounded-full bg-gold-400 px-6 py-3.5 text-center font-semibold text-ink shadow-glow">
+              Join the Movement
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════════════════ 1 · THE COLLECTIVE ANCHOR ══════════════════ -->
+<section class="relative overflow-hidden pt-[7.5rem] pb-20 lg:pt-[9.5rem] lg:pb-28">
+  <div class="pointer-events-none absolute -left-40 top-24 h-[26rem] w-[26rem] rounded-full bg-teal-100 blur-3xl opacity-70" aria-hidden="true"></div>
+  <!-- Page ghost mark: ہم (hum) — we -->
+  <div class="pointer-events-none absolute -right-4 top-40 select-none font-urdu text-[12rem] leading-none text-teal-900/[0.05] lg:text-[22rem]" aria-hidden="true">ہم</div>
+
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+    <p class="reveal inline-flex items-center gap-3 rounded-full border border-teal-200 bg-white/70 px-4 py-2 text-[13px] font-medium tracking-wide text-teal-700 backdrop-blur">
+      <span class="h-2 w-2 rounded-full bg-gold-400"></span>
+      Volunteers &amp; team · <span class="font-urdu text-base leading-none">ہم</span> — <em>hum: we</em>
+    </p>
+
+    <!-- Cinematic founding photograph -->
+    <figure class="reveal leaf relative mt-8 shadow-lift" style="--d:120ms">
+      <div class="aspect-[16/10] sm:aspect-[21/9]">
+        <!-- Placeholder — replace with the actual photograph of the 6 founding members -->
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2000&auto=format&fit=crop"
+             alt="The six founding members standing together outdoors" class="h-full w-full object-cover" loading="eager" />
+      </div>
+      <figcaption class="absolute bottom-4 left-4 rounded-full bg-ink/80 px-5 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-pearl backdrop-blur sm:bottom-6 sm:left-6">
+        The six of us · Sheikhupura · before this had a name
+      </figcaption>
+    </figure>
+
+    <!-- The spark -->
+    <p class="reveal mx-auto mt-12 max-w-2xl text-center text-lg leading-relaxed text-slate-600 sm:text-xl" style="--d:240ms">
+      It began as one dinner conversation between six neighbours about the same bare canal bank — and ended, three weeks later, with pooled savings, borrowed spades, and forty saplings in the ground. No committee. No charter. Just a start.
+    </p>
+
+    <!-- Typographic pivot -->
+    <div class="mt-20 lg:mt-28">
+      <h1 class="reveal font-display text-[2.6rem] font-bold leading-[1.02] tracking-tight text-ink sm:text-6xl lg:text-[5.2rem]" style="--d:100ms">
+        We are the least<br />interesting part<br />of this story<span class="text-gold-500">.</span>
+      </h1>
+      <p class="reveal mt-8 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl" style="--d:220ms">
+        Founders start things; teams build them. Everything Ghani has actually done — every surviving tree, rolling cart, and dispatched parcel — belongs to the crews below. Read past us, quickly. <strong class="font-semibold text-ink">They're the point.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 2 · THE ASYMMETRIC TEAM REGISTRY ══════════════════ -->
+<section class="bg-white py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+
+    <!-- ── Block A · Environmental Execution ── -->
+    <div class="grid gap-12 lg:grid-cols-12 lg:gap-8">
+
+      <!-- Identity — always first on mobile -->
+      <div class="reveal lg:col-span-5">
+        <h2 class="font-display text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl">
+          <span class="text-gold-500">01 /</span> Environmental<br />Execution
+        </h2>
+        <p class="mt-6 max-w-md text-lg leading-relaxed text-slate-600">
+          The Canopy Crew. They survey bare ground, raise native saplings in a backyard nursery in Jandiala, run the watering rotas through Punjab summers, and walk every grove again at 30, 90, and 365 days. Nothing joins the public counter until it has survived on their watch.
+        </p>
+        <div class="mt-9 border-l-2 border-gold-400 pl-6">
+          <p class="font-display text-5xl font-bold tabular-nums text-teal-700 sm:text-6xl">1,200+</p>
+          <p class="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-slate-500">Saplings planted this season · survival-audited</p>
+        </div>
+      </div>
+
+      <!-- Roster — right on desktop -->
+      <div class="reveal lg:col-span-6 lg:col-start-7" style="--d:150ms">
+        <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-teal-700">The roster</p>
+        <ul class="mt-6">
+          <li class="flex flex-wrap items-baseline gap-x-4 gap-y-2 border-b border-teal-100 py-4">
+            <span class="font-display text-xl font-bold text-ink">Bilal Ahmad</span>
+            <span class="rounded-full border border-gold-200 bg-gold-50 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-gold-700">Sheikhupura Hub</span>
+            <span class="rounded-full border border-teal-200 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-teal-700">Site Survey</span>
+          </li>
+          <li class="flex flex-wrap items-baseline gap-x-4 gap-y-2 border-b border-teal-100 py-4 sm:pl-10">
+            <span class="font-display text-xl font-bold text-ink">Maryam Tariq</span>
+            <span class="rounded-full border border-teal-200 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-teal-700">Irrigation</span>
+          </li>
+          <li class="flex flex-wrap items-baseline gap-x-4 gap-y-2 border-b border-teal-100 py-4">
+            <span class="font-display text-xl font-bold text-ink">Danish Ali</span>
+            <span class="rounded-full border border-gold-200 bg-gold-50 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-gold-700">Jandiala Hub</span>
+            <span class="rounded-full border border-teal-200 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-teal-700">Nursery</span>
+          </li>
+          <li class="flex flex-wrap items-baseline gap-x-4 gap-y-2 border-b border-teal-100 py-4 sm:pl-10">
+            <span class="font-display text-xl font-bold text-ink">Sana Ullah</span>
+            <span class="rounded-full border border-teal-200 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-teal-700">Watering Rota</span>
+          </li>
+          <li class="flex flex-wrap items-baseline gap-x-4 gap-y-2 border-b border-teal-100 py-4">
+            <span class="font-display text-xl font-bold text-ink">Iqra Shahid</span>
+            <span class="rounded-full border border-teal-200 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-teal-700">Survival Audits</span>
+          </li>
+          <li class="flex flex-wrap items-baseline gap-x-4 gap-y-2 border-b border-teal-100 py-4 sm:pl-10">
+            <span class="font-display text-xl font-bold text-ink">Hafiz Junaid</span>
+            <span class="rounded-full border border-gold-200 bg-gold-50 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-gold-700">Farooqabad Hub</span>
+          </li>
+          <li class="flex flex-wrap items-baseline gap-x-4 gap-y-2 py-4">
+            <span class="font-display text-xl font-bold text-ink">Rabia Noor</span>
+            <span class="rounded-full border border-teal-200 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-teal-700">School Groves</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── Block B · Enterprise Support (mirrored on desktop) ── -->
+    <div class="mt-24 grid gap-12 border-t border-teal-100 pt-20 lg:mt-28 lg:grid-cols-12 lg:gap-8">
+
+      <!-- Identity — first in DOM so mobile stacks identically to Block A; flipped right on desktop -->
+      <div class="reveal lg:order-2 lg:col-span-5 lg:col-start-8 lg:text-right">
+        <h2 class="font-display text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl">
+          <span class="text-gold-500">02 /</span> Enterprise<br />Support
+        </h2>
+        <p class="mt-6 max-w-md text-lg leading-relaxed text-slate-600 lg:ml-auto">
+          The unit that turns aid recipients into owners. They source and weld the carts, fit the scales, negotiate first stock, sit through vendor paperwork, and walk opening routes beside every new business — then step away, permanently, on purpose.
+        </p>
+        <div class="mt-9 border-l-2 border-gold-400 pl-6 lg:border-l-0 lg:border-r-2 lg:pl-0 lg:pr-6">
+          <p class="font-display text-5xl font-bold tabular-nums text-teal-700 sm:text-6xl">17</p>
+          <p class="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-slate-500">Mobile assets assembled &amp; deployed · route-walked</p>
+        </div>
+      </div>
+
+      <!-- Roster — left on desktop -->
+      <div class="reveal lg:order-1 lg:col-span-6" style="--d:150ms">
+        <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-teal-700">The roster</p>
+        <ul class="mt-6">
+          <li class="flex flex-wrap items-baseline gap-x-4 gap-y-2 border-b border-teal-100 py-4">
+            <span class="font-display text-xl font-bold text-ink">Usman Ghani</span>
+            <span class="rounded-full border border-teal-200 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-teal-700">Cart Assembly</span>
+          </li>
+          <li class="flex flex-wrap items-baseline gap-x-4 gap-y-2 border-b border-teal-100 py-4 sm:pl-10">
+            <span class="font-display text-xl font-bold text-ink">Farhan Aslam</span>
+            <span class="rounded-full border border-gold-200 bg-gold-50 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-gold-700">Muridke Hub</span>
+            <span class="rounded-full border border-teal-200 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-teal-700">Sourcing</span>
+          </li>
+          <li class="flex flex-wrap items-baseline gap-x-4 gap-y-2 border-b border-teal-100 py-4">
+            <span class="font-display text-xl font-bold text-ink">Ayesha Malik</span>
+            <span class="rounded-full border border-teal-200 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-teal-700">Vendor Paperwork</span>
+          </li>
+          <li class="flex flex-wrap items-baseline gap-x-4 gap-y-2 border-b border-teal-100 py-4 sm:pl-10">
+            <span class="font-display text-xl font-bold text-ink">Tayyab Hussain</span>
+            <span class="rounded-full border border-teal-200 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-teal-700">Route Planning</span>
+          </li>
+          <li class="flex flex-wrap items-baseline gap-x-4 gap-y-2 border-b border-teal-100 py-4">
+            <span class="font-display text-xl font-bold text-ink">Mehak Zafar</span>
+            <span class="rounded-full border border-gold-200 bg-gold-50 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-gold-700">Ferozewala Hub</span>
+          </li>
+          <li class="flex flex-wrap items-baseline gap-x-4 gap-y-2 py-4 sm:pl-10">
+            <span class="font-display text-xl font-bold text-ink">Abdul Rehman</span>
+            <span class="rounded-full border border-teal-200 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-teal-700">Follow-up Visits</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 3 · THE INDIVIDUAL SPOTLIGHT ══════════════════ -->
+<section class="py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="max-w-2xl">
+      <p class="reveal flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-teal-600">
+        <span class="h-2 w-2 rounded-full bg-gold-400"></span> Above &amp; beyond
+      </p>
+      <h2 class="reveal mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl" style="--d:100ms">
+        Some people didn't stop<br />at showing up.
+      </h2>
+    </div>
+
+    <div class="mt-16 space-y-20 lg:space-y-24">
+
+      <!-- Story · Iqra -->
+      <article class="reveal grid items-center gap-10 lg:grid-cols-12">
+        <figure class="leaf lift shadow-lift lg:col-span-4">
+          <!-- Placeholder — replace with Iqra's field photo -->
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop"
+               alt="Portrait of volunteer Iqra Shahid" class="aspect-[4/5] w-full object-cover" loading="lazy" />
+        </figure>
+        <div class="lg:col-span-7 lg:col-start-6">
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-gold-600">Field story — Canopy Crew</p>
+          <h3 class="mt-4 font-display text-2xl font-bold leading-snug text-ink sm:text-3xl">
+            When the water bowser broke in June, Iqra didn't file a complaint. She got on her bike.
+          </h3>
+          <p class="mt-5 max-w-2xl text-lg leading-relaxed text-slate-600">
+            Nine kilometres each way, every day, through a 47° heatwave — hand-watering three hundred saplings on the Farooqabad stretch from canisters strapped to her carrier. When the audit crew returned at day ninety, her section logged the best survival rate in the district. She still insists it "wasn't a big deal." The trees disagree.
+          </p>
+          <p class="mt-5 font-display font-semibold text-teal-700">Iqra Shahid · Survival Audits, since 2024</p>
+        </div>
+      </article>
+
+      <!-- Story · Usman (mirrored) -->
+      <article class="reveal grid items-center gap-10 border-t border-teal-100 pt-16 lg:grid-cols-12">
+        <figure class="leaf-flip lift shadow-lift lg:order-2 lg:col-span-4 lg:col-start-9">
+          <!-- Placeholder — replace with Usman's workshop photo -->
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop"
+               alt="Portrait of volunteer Usman Ghani" class="aspect-[4/5] w-full object-cover" loading="lazy" />
+        </figure>
+        <div class="lg:order-1 lg:col-span-7">
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-gold-600">Field story — Enterprise Support</p>
+          <h3 class="mt-4 font-display text-2xl font-bold leading-snug text-ink sm:text-3xl">
+            Cart #1 was built in Usman's courtyard. Its axle broke in a week. What he did next became the blueprint.
+          </h3>
+          <p class="mt-5 max-w-2xl text-lg leading-relaxed text-slate-600">
+            Village roads eat standard axles for breakfast. Instead of buying another, Usman spent three consecutive weekends redesigning the undercarriage — wider stance, reinforced welds, salvaged motorcycle bearings. Every one of the sixteen carts built since rolls on his design, and he inspects each new build personally before it's handed over.
+          </p>
+          <p class="mt-5 font-display font-semibold text-teal-700">Usman Ghani · Cart Assembly, since 2024</p>
+        </div>
+      </article>
+
+      <!-- Story · Rabia -->
+      <article class="reveal grid items-center gap-10 border-t border-teal-100 pt-16 lg:grid-cols-12">
+        <figure class="leaf lift shadow-lift lg:col-span-4">
+          <!-- Placeholder — replace with Rabia's schoolyard photo -->
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=800&auto=format&fit=crop"
+               alt="Portrait of volunteer Rabia Noor" class="aspect-[4/5] w-full object-cover" loading="lazy" />
+        </figure>
+        <div class="lg:col-span-7 lg:col-start-6">
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-gold-600">Field story — Canopy Crew</p>
+          <h3 class="mt-4 font-display text-2xl font-bold leading-snug text-ink sm:text-3xl">
+            Rabia walked into six headmasters' offices with one map and walked out with six schoolyard groves.
+          </h3>
+          <p class="mt-5 max-w-2xl text-lg leading-relaxed text-slate-600">
+            Her pitch took four minutes: shade for assemblies, fruit for the canteen, a science lesson growing outside the window. Every school said yes. Then she went further — organizing students into "grove guardian" rotas, so each tree has a child who knows it by name. Those groves now have the highest survival rates of any site type we plant.
+          </p>
+          <p class="mt-5 font-display font-semibold text-teal-700">Rabia Noor · School Groves, since 2025</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CLOSING BAND ══════════════════ -->
+<section class="px-5 pb-24 sm:px-8 lg:pb-32">
+  <div class="relative mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-ink p-10 text-center shadow-lift sm:p-16">
+    <div class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-gold-500/20 blur-3xl" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-teal-700/40 blur-3xl" aria-hidden="true"></div>
+
+    <h2 class="reveal relative mx-auto max-w-2xl font-display text-3xl font-bold leading-tight text-pearl sm:text-5xl">
+      Your name belongs<br />on one of these rosters<span class="text-gold-300">.</span>
+    </h2>
+    <p class="reveal relative mx-auto mt-5 max-w-md text-lg text-teal-100" style="--d:150ms">
+      Every person above started with a form shorter than this sentence deserves.
+    </p>
+    <a href="join.html" class="reveal relative mt-9 inline-block rounded-full bg-gold-400 px-9 py-4 font-display text-lg font-semibold text-ink shadow-glow lift hover:bg-gold-300" style="--d:250ms">
+      Add Your Name
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════ FOOTER (site-uniform, condensed) ══════════════════ -->
+<footer class="bg-teal-950 text-teal-200">
+  <div class="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+    <div class="flex flex-col items-start justify-between gap-10 md:flex-row md:items-center">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="grid h-10 w-10 place-items-center rounded-2xl bg-gold-400 text-ink">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22v-8"/><path d="M12 14c0-4 2.5-6.5 7-7-.5 4.5-3 7-7 7z" fill="currentColor" stroke="none"/>
+            <path d="M12 14c0-4-2.5-6.5-7-7 .5 4.5 3 7 7 7z" fill="currentColor" stroke="none" opacity=".55"/>
+          </svg>
+        </span>
+        <span class="font-display text-xl font-bold text-pearl">Ghani Welfare · Volunteers &amp; Team</span>
+      </a>
+
+      <nav aria-label="Footer">
+        <ul class="flex flex-wrap gap-x-8 gap-y-3 text-[15px]">
+          <li><a href="why-different.html" class="hover:text-gold-300 transition-colors">Why We're Different</a></li>
+          <li><a href="index.html#frontlines" class="hover:text-gold-300 transition-colors">Active Frontlines</a></li>
+          <li><a href="bazaar.html" class="hover:text-gold-300 transition-colors">The Bazaar</a></li>
+          <li><a href="team.html" class="text-gold-300">Volunteers &amp; Team</a></li>
+          <li><a href="join.html" class="hover:text-gold-300 transition-colors">Volunteer</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-teal-400 sm:flex-row">
+      <p>© 2026 Ghani Welfare. Founders start things; teams build them.</p>
+      <p><span class="font-urdu text-base">ہم</span> — we, before me.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════ VANILLA JS ══════════════════ -->
+<script>
+  // ── Mobile menu ──────────────────────────────────────────────
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.classList.toggle('menu-open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  document.querySelectorAll('.menu-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuBtn.classList.remove('menu-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ── Header shadow on scroll ──────────────────────────────────
+  const header = document.getElementById('siteHeader');
+  const onScroll = () => header.classList.toggle('shadow-lift', window.scrollY > 12);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ── Scroll-reveal (respects reduced motion) ──────────────────
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reveals = document.querySelectorAll('.reveal');
+
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    reveals.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(el => io.observe(el));
+  }
+</script>
+
+</body>
+</html>

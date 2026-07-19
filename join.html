@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Join the Movement — Ghani Welfare · Nobody Here Waited for Permission</title>
+<meta name="description" content="Join Ghani Welfare. Ordinary people from Sheikhupura are planting a district, launching micro-businesses, and carrying craft to the world. Register your capability." />
+
+<!-- Fonts (identical to site system) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet" />
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          pearl: '#F7FAF9',
+          ink:   '#06302E',
+          teal: {
+            50:'#EEF6F5', 100:'#DDEDEB', 200:'#BBDBD7', 300:'#8FC3BD',
+            400:'#4E9D95', 500:'#177E78', 600:'#0F6863', 700:'#0C5450',
+            800:'#0A4340', 900:'#083634', 950:'#052422'
+          },
+          gold: {
+            50:'#FDF8EA', 100:'#FAEEC8', 200:'#F5DD8E', 300:'#EFC64D',
+            400:'#EAB023', 500:'#D99A0E', 600:'#BB7A09', 700:'#955C0B'
+          }
+        },
+        fontFamily: {
+          display: ['"Bricolage Grotesque"', 'sans-serif'],
+          sans: ['"Instrument Sans"', 'sans-serif'],
+          urdu: ['"Noto Nastaliq Urdu"', 'serif']
+        },
+        boxShadow: {
+          lift: '0 18px 40px -18px rgba(6,48,46,0.28)',
+          glow: '0 10px 30px -10px rgba(234,176,35,0.55)'
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-padding-top: 5.5rem; }
+  body { -webkit-font-smoothing: antialiased; }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1);
+    transition-delay: var(--d, 0ms);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* Hover lift */
+  .lift { transition: transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s; }
+  .lift:hover { transform: translateY(-6px); }
+
+  /* Success state entrance */
+  #successState { opacity: 0; transform: translateY(20px) scale(.98); transition: opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1); }
+  #successState.shown { opacity: 1; transform: none; }
+
+  /* Hamburger morph */
+  .bar { transition: transform .3s ease, opacity .3s ease; transform-origin: center; }
+  .menu-open .bar-1 { transform: translateY(7px) rotate(45deg); }
+  .menu-open .bar-2 { opacity: 0; }
+  .menu-open .bar-3 { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile menu slide */
+  #mobileMenu { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s cubic-bezier(.22,.61,.36,1); }
+  #mobileMenu.open { grid-template-rows: 1fr; }
+  #mobileMenu > div { overflow: hidden; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+    outline: 3px solid #EAB023; outline-offset: 3px; border-radius: .5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .lift, .lift:hover { transition: none; transform: none; }
+    #successState { transition: none; }
+  }
+</style>
+</head>
+
+<body class="bg-pearl font-sans text-teal-900 selection:bg-gold-200 selection:text-ink">
+
+<!-- ══════════════════ NAVIGATION (site-uniform, Volunteer marked active) ══════════════════ -->
+<header id="siteHeader" class="fixed inset-x-0 top-0 z-50 transition-shadow duration-300">
+  <div class="bg-white/60 backdrop-blur-xl border-b border-white/50">
+    <nav class="mx-auto max-w-7xl px-5 sm:px-8" aria-label="Main">
+      <div class="flex h-[4.5rem] items-center justify-between gap-6">
+
+        <a href="index.html" class="flex items-center gap-3 group">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-ink text-gold-400 shadow-lift">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22v-8"/><path d="M12 14c0-4 2.5-6.5 7-7-.5 4.5-3 7-7 7z" fill="currentColor" stroke="none"/>
+              <path d="M12 14c0-4-2.5-6.5-7-7 .5 4.5 3 7 7 7z" fill="currentColor" stroke="none" opacity=".55"/>
+            </svg>
+          </span>
+          <span class="font-display text-xl font-bold tracking-tight text-ink">Ghani <span class="text-teal-600">Welfare</span></span>
+        </a>
+
+        <div class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-teal-800">
+          <a href="why-different.html" class="hover:text-ink transition-colors">Why We're Different</a>
+          <a href="index.html#frontlines" class="hover:text-ink transition-colors">Active Frontlines</a>
+          <a href="bazaar.html" class="hover:text-ink transition-colors">The Bazaar</a>
+          <a href="join.html" aria-current="page"
+             class="font-semibold text-ink underline decoration-gold-400 decoration-2 underline-offset-8">Volunteer</a>
+          <a href="#registry"
+             class="rounded-full bg-gold-400 px-6 py-2.5 font-semibold text-ink shadow-glow lift hover:bg-gold-300">
+            Join the Movement
+          </a>
+        </div>
+
+        <button id="menuBtn" class="lg:hidden grid h-11 w-11 place-items-center rounded-xl bg-ink/5"
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+          <span class="flex flex-col gap-[5px]">
+            <span class="bar bar-1 block h-[2px] w-6 rounded-full bg-ink"></span>
+            <span class="bar bar-2 block h-[2px] w-6 rounded-full bg-ink"></span>
+            <span class="bar bar-3 block h-[2px] w-6 rounded-full bg-ink"></span>
+          </span>
+        </button>
+      </div>
+
+      <div id="mobileMenu">
+        <div>
+          <div class="flex flex-col gap-1 pb-6 pt-2 text-lg font-medium text-teal-900">
+            <a href="why-different.html" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Why We're Different</a>
+            <a href="index.html#frontlines" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Active Frontlines</a>
+            <a href="bazaar.html" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">The Bazaar</a>
+            <a href="join.html" aria-current="page" class="menu-link rounded-xl bg-teal-50 px-4 py-3 font-semibold text-ink">Volunteer</a>
+            <a href="#registry" class="menu-link mt-2 rounded-full bg-gold-400 px-6 py-3.5 text-center font-semibold text-ink shadow-glow">
+              Join the Movement
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════════════════ 1 · THE HUMAN CATALYST ══════════════════ -->
+<section class="relative overflow-hidden pt-[7.5rem] pb-16 lg:pt-[10rem] lg:pb-24">
+  <div class="pointer-events-none absolute -right-40 top-10 h-[28rem] w-[28rem] rounded-full bg-gold-100 blur-3xl opacity-80" aria-hidden="true"></div>
+  <!-- Page ghost mark: ساتھ (saath) — together -->
+  <div class="pointer-events-none absolute -left-10 bottom-[-4rem] select-none font-urdu text-[12rem] leading-none text-teal-900/[0.05] lg:text-[19rem]" aria-hidden="true">ساتھ</div>
+
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-8">
+        <p class="reveal inline-flex items-center gap-3 rounded-full border border-teal-200 bg-white/70 px-4 py-2 text-[13px] font-medium tracking-wide text-teal-700 backdrop-blur">
+          <span class="h-2 w-2 rounded-full bg-gold-400"></span>
+          Join the movement · <span class="font-urdu text-base leading-none">ساتھ</span> — <em>saath: together</em>
+        </p>
+
+        <h1 class="reveal mt-7 font-display text-[3rem] font-bold leading-[1.0] tracking-tight text-ink sm:text-6xl lg:text-7xl" style="--d:120ms">
+          Nobody here waited<br />
+          <span class="text-teal-600">for permission.</span>
+        </h1>
+
+        <div class="reveal mt-9 max-w-2xl space-y-5 text-lg leading-relaxed text-slate-600 sm:text-xl" style="--d:260ms">
+          <p>
+            The people running this — pinning groves across Sheikhupura, rolling out fruit carts, packing artisan orders for the Bazaar — are not specialists, celebrities, or career philanthropists. They're a schoolteacher, a shopkeeper, a couple of students, a retired clerk. <strong class="font-semibold text-ink">Ordinary people. Exactly like you.</strong>
+          </p>
+          <p>
+            None of them filled out a grant application or waited for an agency to arrive. They saw a bare canal bank, an empty aid queue, a craft dying quietly — and simply started. The tools were borrowed. The plan fit on one page. It was enough.
+          </p>
+          <p class="font-display text-xl font-semibold text-ink sm:text-2xl">
+            The momentum is already moving. The only thing between you and it is the form below — and it's shorter than this paragraph.
+          </p>
+        </div>
+
+        <a href="#registry" class="reveal mt-9 inline-flex items-center gap-3 rounded-full bg-gold-400 px-8 py-4 font-display text-lg font-semibold text-ink shadow-glow lift hover:bg-gold-300" style="--d:380ms">
+          Register Your Capability
+          <svg class="translate-y-px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 2–4 · THE UNIFIED CAPABILITY REGISTRY ══════════════════ -->
+<section id="registry" class="bg-white py-24 lg:py-32">
+  <div class="mx-auto max-w-3xl px-5 sm:px-8">
+
+    <div class="max-w-xl">
+      <p class="reveal flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-teal-600">
+        <span class="h-2 w-2 rounded-full bg-gold-400"></span> The unified capability registry
+      </p>
+      <h2 class="reveal mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl" style="--d:100ms">
+        Tell us who's arriving.
+      </h2>
+      <p class="reveal mt-4 text-lg leading-relaxed text-slate-600" style="--d:200ms">
+        Four fields, one optional choice, done. A coordinator — a volunteer, like you're about to be — will call within the week.
+      </p>
+    </div>
+
+    <!--
+      ═══════════ INVISIBLE GOOGLE FORMS INTEGRATION ═══════════
+      1. Create your Google Form with matching fields, click "Send" → link, then open
+         the form and view page source (or use the prefilled-link trick) to find each
+         field's entry.XXXXXXXXX ID.
+      2. Replace GOOGLE_FORM_ACTION in the script at the bottom of this file with:
+         https://docs.google.com/forms/d/e/YOUR_LONG_FORM_ID/formResponse
+      3. Replace each placeholder ID in the FIELD_MAP object (same script) with the
+         real entry.XXXXXXXXX values. The name="" attributes below stay as they are.
+      The page never redirects to Google — submission happens via background fetch().
+    -->
+    <form id="joinForm" class="reveal mt-14" style="--d:300ms" novalidate>
+
+      <!-- ── 01 · Who you are ── -->
+      <fieldset>
+        <legend class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-teal-700">01 — Who you are</legend>
+
+        <div class="mt-6 grid gap-6 sm:grid-cols-2">
+          <!-- Full Name — Replace with Google Form entry.XXXXXXXXX ID (see FIELD_MAP in script) -->
+          <div class="sm:col-span-2">
+            <label for="fName" class="mb-2 block text-sm font-medium text-teal-800">Full name <span class="text-gold-600">*</span></label>
+            <input id="fName" name="entry_name" type="text" required autocomplete="name"
+                   placeholder="e.g. Ayesha Khan"
+                   class="w-full rounded-2xl border-2 border-teal-100 bg-pearl px-5 py-4 text-ink placeholder:text-slate-400 transition-colors focus:border-gold-400" />
+          </div>
+
+          <!-- Gender — Replace with Google Form entry.XXXXXXXXX ID (see FIELD_MAP in script) -->
+          <div>
+            <label for="fGender" class="mb-2 block text-sm font-medium text-teal-800">Gender <span class="text-gold-600">*</span></label>
+            <div class="relative">
+              <select id="fGender" name="entry_gender" required
+                      class="w-full appearance-none rounded-2xl border-2 border-teal-100 bg-pearl px-5 py-4 text-ink transition-colors focus:border-gold-400 invalid:text-slate-400">
+                <option value="" disabled selected>Select…</option>
+                <option value="Female" class="text-ink">Female</option>
+                <option value="Male" class="text-ink">Male</option>
+                <option value="Prefer not to say" class="text-ink">Prefer not to say</option>
+              </select>
+              <svg class="pointer-events-none absolute right-5 top-1/2 h-4 w-4 -translate-y-1/2 text-teal-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+          </div>
+
+          <!-- Phone Number — Replace with Google Form entry.XXXXXXXXX ID (see FIELD_MAP in script) -->
+          <div>
+            <label for="fPhone" class="mb-2 block text-sm font-medium text-teal-800">Phone number <span class="text-gold-600">*</span></label>
+            <input id="fPhone" name="entry_phone" type="tel" required inputmode="tel" autocomplete="tel"
+                   placeholder="03xx-xxxxxxx"
+                   class="w-full rounded-2xl border-2 border-teal-100 bg-pearl px-5 py-4 text-ink placeholder:text-slate-400 transition-colors focus:border-gold-400" />
+          </div>
+
+          <!-- Email Address — Replace with Google Form entry.XXXXXXXXX ID (see FIELD_MAP in script) -->
+          <div class="sm:col-span-2">
+            <label for="fEmail" class="mb-2 block text-sm font-medium text-teal-800">Email address <span class="text-gold-600">*</span></label>
+            <input id="fEmail" name="entry_email" type="email" required autocomplete="email"
+                   placeholder="you@example.com"
+                   class="w-full rounded-2xl border-2 border-teal-100 bg-pearl px-5 py-4 text-ink placeholder:text-slate-400 transition-colors focus:border-gold-400" />
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ── 02 · Choose your lanes ── -->
+      <fieldset class="mt-14">
+        <legend class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-teal-700">02 — Choose your lanes <span class="normal-case tracking-normal text-slate-400">(pick any, all, or none)</span></legend>
+        <p class="mt-3 text-sm leading-relaxed text-slate-500">
+          Leave every box unticked and you'll join as a general supporter — we'll route you where the week needs hands.
+        </p>
+
+        <!--
+          Lane checkboxes — Google checkbox questions use ONE shared entry.XXXXXXXXX ID;
+          each checked value is appended under it. Map via FIELD_MAP → entry_lanes.
+          The value="" strings below must exactly match the option labels in your Google Form.
+        -->
+        <div class="mt-6 grid gap-4">
+
+          <!-- Lane · Environmental Execution -->
+          <label class="group flex cursor-pointer items-start gap-4 rounded-3xl border-2 border-teal-100 bg-pearl p-5 transition-colors has-[:checked]:border-ink has-[:checked]:bg-teal-50 sm:p-6">
+            <input type="checkbox" name="entry_lanes" value="Environmental Execution (Tree Plantation Drive)" class="peer sr-only" />
+            <span class="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-lg border-2 border-teal-300 bg-white text-transparent transition-colors peer-checked:border-ink peer-checked:bg-ink peer-checked:text-gold-400">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
+            </span>
+            <span>
+              <span class="font-display text-lg font-bold text-ink">Environmental Execution</span>
+              <span class="mt-1 block text-sm leading-relaxed text-slate-500">Tree plantation drives — digging, planting, watering rotas, and the 30/90/365-day survival audits across Sheikhupura.</span>
+            </span>
+          </label>
+
+          <!-- Lane · Enterprise & Infrastructure Support -->
+          <label class="group flex cursor-pointer items-start gap-4 rounded-3xl border-2 border-teal-100 bg-pearl p-5 transition-colors has-[:checked]:border-ink has-[:checked]:bg-teal-50 sm:p-6">
+            <input type="checkbox" name="entry_lanes" value="Enterprise & Infrastructure Support (Micro-business / Mobile Fruit Cart deployment)" class="peer sr-only" />
+            <span class="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-lg border-2 border-teal-300 bg-white text-transparent transition-colors peer-checked:border-ink peer-checked:bg-ink peer-checked:text-gold-400">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
+            </span>
+            <span>
+              <span class="font-display text-lg font-bold text-ink">Enterprise &amp; Infrastructure Support</span>
+              <span class="mt-1 block text-sm leading-relaxed text-slate-500">Micro-business launches — sourcing and outfitting mobile fruit carts, walking first routes, and helping new owners through vendor paperwork.</span>
+            </span>
+          </label>
+
+          <!-- Lane · Creative & Digital Pipeline -->
+          <label class="group flex cursor-pointer items-start gap-4 rounded-3xl border-2 border-teal-100 bg-pearl p-5 transition-colors has-[:checked]:border-ink has-[:checked]:bg-teal-50 sm:p-6">
+            <input type="checkbox" name="entry_lanes" value="Creative & Digital Pipeline (Artisan Marketplace & Global Logistics)" class="peer sr-only" />
+            <span class="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-lg border-2 border-teal-300 bg-white text-transparent transition-colors peer-checked:border-ink peer-checked:bg-ink peer-checked:text-gold-400">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
+            </span>
+            <span>
+              <span class="font-display text-lg font-bold text-ink">Creative &amp; Digital Pipeline</span>
+              <span class="mt-1 block text-sm leading-relaxed text-slate-500">The Bazaar — photographing craft, writing maker stories, handling dispatch logistics, and connecting artisans to buyers worldwide.</span>
+            </span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- ── 03 · Submit ── -->
+      <div class="mt-14">
+        <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-teal-700">03 — Deploy yourself</p>
+        <button id="submitBtn" type="submit"
+                class="mt-5 w-full rounded-full bg-ink py-5 font-display text-xl font-semibold text-gold-300 shadow-lift lift hover:bg-teal-800">
+          Count Me In
+        </button>
+        <p id="formError" hidden class="mt-4 rounded-2xl border border-teal-200 bg-teal-50 px-5 py-4 text-sm text-teal-800">
+          The registry couldn't be reached — check your connection and try once more. If it keeps failing, message us directly on WhatsApp.
+        </p>
+        <p class="mt-4 text-center text-sm text-slate-400">No spam, no newsletters — just one human phone call.</p>
+      </div>
+    </form>
+
+    <!-- ── Inline success state (hidden until submission) ── -->
+    <div id="successState" hidden class="mt-14 rounded-[2.5rem] bg-ink p-10 text-center shadow-lift sm:p-14">
+      <span class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-gold-400 text-ink">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
+      </span>
+      <h3 class="mt-7 font-display text-3xl font-bold text-pearl sm:text-4xl">You're in. Welcome to the movement.</h3>
+      <p class="mx-auto mt-4 max-w-md text-lg leading-relaxed text-teal-100">
+        Your capability is logged in the registry. A volunteer coordinator will call you within the week — until then, wander the ecosystem you just joined.
+      </p>
+      <p class="mt-6 font-urdu text-2xl text-gold-300" aria-hidden="true">ساتھ</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="why-different.html" class="rounded-full bg-gold-400 px-7 py-3.5 font-display font-semibold text-ink shadow-glow lift hover:bg-gold-300">Read the Blueprint</a>
+        <a href="bazaar.html" class="rounded-full border-2 border-teal-300/60 px-7 py-3 font-display font-semibold text-pearl lift hover:bg-white/10">Walk the Bazaar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════ FOOTER (site-uniform, condensed) ══════════════════ -->
+<footer class="bg-teal-950 text-teal-200">
+  <div class="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+    <div class="flex flex-col items-start justify-between gap-10 md:flex-row md:items-center">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="grid h-10 w-10 place-items-center rounded-2xl bg-gold-400 text-ink">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22v-8"/><path d="M12 14c0-4 2.5-6.5 7-7-.5 4.5-3 7-7 7z" fill="currentColor" stroke="none"/>
+            <path d="M12 14c0-4-2.5-6.5-7-7 .5 4.5 3 7 7 7z" fill="currentColor" stroke="none" opacity=".55"/>
+          </svg>
+        </span>
+        <span class="font-display text-xl font-bold text-pearl">Ghani Welfare · Join the Movement</span>
+      </a>
+
+      <nav aria-label="Footer">
+        <ul class="flex flex-wrap gap-x-8 gap-y-3 text-[15px]">
+          <li><a href="why-different.html" class="hover:text-gold-300 transition-colors">Why We're Different</a></li>
+          <li><a href="index.html#frontlines" class="hover:text-gold-300 transition-colors">Active Frontlines</a></li>
+          <li><a href="bazaar.html" class="hover:text-gold-300 transition-colors">The Bazaar</a></li>
+          <li><a href="join.html" class="text-gold-300">Volunteer</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-teal-400 sm:flex-row">
+      <p>© 2026 Ghani Welfare. Nobody here waited for permission.</p>
+      <p><span class="font-urdu text-base">ساتھ</span> — together is the strategy.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════ VANILLA JS ══════════════════ -->
+<script>
+  // ── Mobile menu ──────────────────────────────────────────────
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.classList.toggle('menu-open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  document.querySelectorAll('.menu-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuBtn.classList.remove('menu-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ── Header shadow on scroll ──────────────────────────────────
+  const header = document.getElementById('siteHeader');
+  const onScroll = () => header.classList.toggle('shadow-lift', window.scrollY > 12);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ── Scroll-reveal (respects reduced motion) ──────────────────
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reveals = document.querySelectorAll('.reveal');
+
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    reveals.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(el => io.observe(el));
+  }
+
+  // ═════════════ INVISIBLE GOOGLE FORMS SUBMISSION ═════════════
+  // STEP 1 — Replace with your real formResponse endpoint:
+  //   https://docs.google.com/forms/d/e/YOUR_LONG_FORM_ID/formResponse
+  const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLScXXXXXXXXXXXXXXXXXXXXXXXX/formResponse'; // ← REPLACE
+
+  // STEP 2 — Replace each placeholder with the real entry.XXXXXXXXX IDs
+  // from your Google Form (the name="" attributes in the HTML stay unchanged):
+  const FIELD_MAP = {
+    entry_name:   'entry.111111111', // ← Full Name        — REPLACE
+    entry_gender: 'entry.222222222', // ← Gender           — REPLACE
+    entry_phone:  'entry.333333333', // ← Phone Number     — REPLACE
+    entry_email:  'entry.444444444', // ← Email Address    — REPLACE
+    entry_lanes:  'entry.555555555'  // ← Lanes (checkbox question — one shared ID) — REPLACE
+  };
+
+  const joinForm = document.getElementById('joinForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const successState = document.getElementById('successState');
+  const formError = document.getElementById('formError');
+
+  joinForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    // Native validation UI for required fields / email format
+    if (!joinForm.reportValidity()) return;
+
+    formError.hidden = true;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Logging you into the registry…';
+    submitBtn.classList.add('opacity-70');
+
+    // Build the payload with Google's entry IDs
+    const payload = new FormData();
+    payload.append(FIELD_MAP.entry_name,   joinForm.entry_name.value.trim());
+    payload.append(FIELD_MAP.entry_gender, joinForm.entry_gender.value);
+    payload.append(FIELD_MAP.entry_phone,  joinForm.entry_phone.value.trim());
+    payload.append(FIELD_MAP.entry_email,  joinForm.entry_email.value.trim());
+    // Checkbox lanes: append every checked value under the same entry ID
+    joinForm.querySelectorAll('input[name="entry_lanes"]:checked')
+      .forEach(cb => payload.append(FIELD_MAP.entry_lanes, cb.value));
+
+    // mode:'no-cors' — Google doesn't send CORS headers, so the response is
+    // opaque (unreadable) but the POST itself is accepted. fetch() resolves on
+    // any delivered request and only rejects on true network failure.
+    fetch(GOOGLE_FORM_ACTION, { method: 'POST', mode: 'no-cors', body: payload })
+      .then(() => {
+        joinForm.hidden = true;
+        successState.hidden = false;
+        requestAnimationFrame(() => requestAnimationFrame(() => successState.classList.add('shown')));
+        successState.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'center' });
+      })
+      .catch(() => {
+        formError.hidden = false;
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Count Me In';
+        submitBtn.classList.remove('opacity-70');
+      });
+  });
+</script>
+
+</body>
+</html>

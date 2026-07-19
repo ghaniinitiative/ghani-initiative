@@ -118,7 +118,7 @@
 
         <!-- Desktop links -->
         <div class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-teal-800">
-          <a href="#different" class="hover:text-ink transition-colors">Why We're Different</a>
+          <a href="why-different.html" class="hover:text-ink transition-colors">Why We're Different</a>
           <a href="#frontlines" class="hover:text-ink transition-colors">Active Frontlines</a>
           <a href="bazaar.html" class="hover:text-ink transition-colors">The Bazaar</a>
           <a href="#join" class="hover:text-ink transition-colors">Volunteer</a>
@@ -143,7 +143,7 @@
       <div id="mobileMenu">
         <div>
           <div class="flex flex-col gap-1 pb-6 pt-2 text-lg font-medium text-teal-900">
-            <a href="#different" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Why We're Different</a>
+            <a href="why-different.html" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Why We're Different</a>
             <a href="#frontlines" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Active Frontlines</a>
             <a href="bazaar.html" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">The Bazaar</a>
             <a href="#join" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Volunteer</a>
@@ -655,7 +655,7 @@
       <nav class="md:col-span-3" aria-label="Footer — Organization">
         <h4 class="font-display text-sm font-semibold uppercase tracking-[0.18em] text-pearl">Organization</h4>
         <ul class="mt-5 space-y-3 text-[15px]">
-          <li><a href="#different" class="hover:text-gold-300 transition-colors">Why we're different</a></li>
+          <li><a href="why-different.html" class="hover:text-gold-300 transition-colors">Why we're different</a></li>
           <li><a href="#frontlines" class="hover:text-gold-300 transition-colors">Active frontlines</a></li>
           <li><a href="bazaar.html" class="hover:text-gold-300 transition-colors">The Bazaar</a></li>
           <li><a href="#join" class="hover:text-gold-300 transition-colors">Volunteer</a></li>
@@ -763,6 +763,19 @@
     // Replace '#' with your live proposal form URL (e.g. Google Form) and remove this handler.
     alert('Link this card to your proposal form URL — e.g. a Google Form for new branch pitches.');
   });
+</script>
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", function (user) {
+      if (!user) {
+        window.netlifyIdentity.on("login", function () {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
 </script>
 
 </body>

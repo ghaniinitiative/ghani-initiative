@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Why We're Different — Ghani Welfare · We Listen. Then We Deploy.</title>
+<meta name="description" content="Ghani Welfare's operating philosophy: needs are reported, verified on foot, and met on the ground — trees, engines, and craft. No fluff, all field data." />
+
+<!-- Fonts (identical to site system) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet" />
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          pearl: '#F7FAF9',
+          ink:   '#06302E',
+          teal: {
+            50:'#EEF6F5', 100:'#DDEDEB', 200:'#BBDBD7', 300:'#8FC3BD',
+            400:'#4E9D95', 500:'#177E78', 600:'#0F6863', 700:'#0C5450',
+            800:'#0A4340', 900:'#083634', 950:'#052422'
+          },
+          gold: {
+            50:'#FDF8EA', 100:'#FAEEC8', 200:'#F5DD8E', 300:'#EFC64D',
+            400:'#EAB023', 500:'#D99A0E', 600:'#BB7A09', 700:'#955C0B'
+          }
+        },
+        fontFamily: {
+          display: ['"Bricolage Grotesque"', 'sans-serif'],
+          sans: ['"Instrument Sans"', 'sans-serif'],
+          urdu: ['"Noto Nastaliq Urdu"', 'serif']
+        },
+        boxShadow: {
+          lift: '0 18px 40px -18px rgba(6,48,46,0.28)',
+          glow: '0 10px 30px -10px rgba(234,176,35,0.55)'
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-padding-top: 5.5rem; }
+  body { -webkit-font-smoothing: antialiased; }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1);
+    transition-delay: var(--d, 0ms);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* Hover lift */
+  .lift { transition: transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s; }
+  .lift:hover { transform: translateY(-6px); }
+
+  /* Tracker progress bar */
+  #progressBar { width: 0%; transition: width 1.6s cubic-bezier(.22,.61,.36,1) .3s; }
+
+  /* Terminal caret */
+  @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  .caret { animation: blink 1s step-end infinite; }
+
+  /* Hamburger morph */
+  .bar { transition: transform .3s ease, opacity .3s ease; transform-origin: center; }
+  .menu-open .bar-1 { transform: translateY(7px) rotate(45deg); }
+  .menu-open .bar-2 { opacity: 0; }
+  .menu-open .bar-3 { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile menu slide */
+  #mobileMenu { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s cubic-bezier(.22,.61,.36,1); }
+  #mobileMenu.open { grid-template-rows: 1fr; }
+  #mobileMenu > div { overflow: hidden; }
+
+  a:focus-visible, button:focus-visible, textarea:focus-visible {
+    outline: 3px solid #EAB023; outline-offset: 3px; border-radius: .5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .lift, .lift:hover { transition: none; transform: none; }
+    #progressBar { transition: none; }
+    .caret { animation: none; }
+  }
+</style>
+</head>
+
+<body class="bg-pearl font-sans text-teal-900 selection:bg-gold-200 selection:text-ink">
+
+<!-- ══════════════════ NAVIGATION (site-uniform, this page marked active) ══════════════════ -->
+<header id="siteHeader" class="fixed inset-x-0 top-0 z-50 transition-shadow duration-300">
+  <div class="bg-white/60 backdrop-blur-xl border-b border-white/50">
+    <nav class="mx-auto max-w-7xl px-5 sm:px-8" aria-label="Main">
+      <div class="flex h-[4.5rem] items-center justify-between gap-6">
+
+        <a href="index.html" class="flex items-center gap-3 group">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-ink text-gold-400 shadow-lift">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22v-8"/><path d="M12 14c0-4 2.5-6.5 7-7-.5 4.5-3 7-7 7z" fill="currentColor" stroke="none"/>
+              <path d="M12 14c0-4-2.5-6.5-7-7 .5 4.5 3 7 7 7z" fill="currentColor" stroke="none" opacity=".55"/>
+            </svg>
+          </span>
+          <span class="font-display text-xl font-bold tracking-tight text-ink">Ghani <span class="text-teal-600">Welfare</span></span>
+        </a>
+
+        <div class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-teal-800">
+          <a href="why-different.html" aria-current="page"
+             class="font-semibold text-ink underline decoration-gold-400 decoration-2 underline-offset-8">Why We're Different</a>
+          <a href="index.html#frontlines" class="hover:text-ink transition-colors">Active Frontlines</a>
+          <a href="bazaar.html" class="hover:text-ink transition-colors">The Bazaar</a>
+          <a href="index.html#join" class="hover:text-ink transition-colors">Volunteer</a>
+          <a href="index.html#join"
+             class="rounded-full bg-gold-400 px-6 py-2.5 font-semibold text-ink shadow-glow lift hover:bg-gold-300">
+            Join the Movement
+          </a>
+        </div>
+
+        <button id="menuBtn" class="lg:hidden grid h-11 w-11 place-items-center rounded-xl bg-ink/5"
+                aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+          <span class="flex flex-col gap-[5px]">
+            <span class="bar bar-1 block h-[2px] w-6 rounded-full bg-ink"></span>
+            <span class="bar bar-2 block h-[2px] w-6 rounded-full bg-ink"></span>
+            <span class="bar bar-3 block h-[2px] w-6 rounded-full bg-ink"></span>
+          </span>
+        </button>
+      </div>
+
+      <div id="mobileMenu">
+        <div>
+          <div class="flex flex-col gap-1 pb-6 pt-2 text-lg font-medium text-teal-900">
+            <a href="why-different.html" aria-current="page" class="menu-link rounded-xl bg-teal-50 px-4 py-3 font-semibold text-ink">Why We're Different</a>
+            <a href="index.html#frontlines" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Active Frontlines</a>
+            <a href="bazaar.html" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">The Bazaar</a>
+            <a href="index.html#join" class="menu-link rounded-xl px-4 py-3 hover:bg-teal-50">Volunteer</a>
+            <a href="index.html#join" class="menu-link mt-2 rounded-full bg-gold-400 px-6 py-3.5 text-center font-semibold text-ink shadow-glow">
+              Join the Movement
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════════════════ 1 · THE ASYMMETRICAL ENTRY ══════════════════ -->
+<section class="relative overflow-hidden pt-[7.5rem] pb-16 lg:pt-[10rem] lg:pb-24">
+  <div class="pointer-events-none absolute -left-40 top-10 h-[28rem] w-[28rem] rounded-full bg-teal-100 blur-3xl opacity-70" aria-hidden="true"></div>
+  <!-- Page ghost mark: عمل (amal) — action -->
+  <div class="pointer-events-none absolute -right-8 bottom-[-4rem] select-none font-urdu text-[12rem] leading-none text-teal-900/[0.05] lg:text-[20rem]" aria-hidden="true">عمل</div>
+
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="grid gap-12 lg:grid-cols-12">
+
+      <!-- Left-heavy typographic hook -->
+      <div class="lg:col-span-8">
+        <p class="reveal inline-flex items-center gap-3 rounded-full border border-teal-200 bg-white/70 px-4 py-2 text-[13px] font-medium tracking-wide text-teal-700 backdrop-blur">
+          <span class="h-2 w-2 rounded-full bg-gold-400"></span>
+          Why we're different · <span class="font-urdu text-base leading-none">عمل</span> — <em>amal: action</em>
+        </p>
+
+        <h1 class="reveal mt-7 font-display text-[3.2rem] font-bold leading-[0.98] tracking-tight text-ink sm:text-7xl lg:text-8xl" style="--d:120ms">
+          We listen.
+          <span class="mt-2 block pl-8 text-teal-600 sm:pl-16 lg:pl-24">Then we<br class="sm:hidden" /> deploy.</span>
+        </h1>
+
+        <p class="reveal mt-9 max-w-xl text-lg leading-relaxed text-slate-600 sm:text-xl" style="--d:260ms">
+          No awareness galas. No billboard budgets. A need gets reported at the bottom of this page, a volunteer verifies it on foot, and a crew shows up — with saplings, a cart, or a market order. <strong class="font-semibold text-ink">That's the whole philosophy.</strong> Everything below is just the proof.
+        </p>
+      </div>
+
+      <!-- Marginalia column -->
+      <aside class="lg:col-span-4 lg:self-end lg:pb-2">
+        <dl class="reveal space-y-6 border-l-2 border-gold-400 pl-6 font-mono text-[13px] leading-relaxed text-slate-500 lg:mt-24" style="--d:380ms">
+          <div>
+            <dt class="font-semibold uppercase tracking-[0.18em] text-teal-700">Mode</dt>
+            <dd class="mt-1">Ground operations, not campaigns.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold uppercase tracking-[0.18em] text-teal-700">Span</dt>
+            <dd class="mt-1">Sheikhupura district — village by village, union council by union council.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold uppercase tracking-[0.18em] text-teal-700">Lag</dt>
+            <dd class="mt-1">Need reported → crew deployed: days, not quarters.</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 2 · THE LIVE TARGET TRACKER ══════════════════ -->
+<section class="px-5 sm:px-8">
+  <div class="relative mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-ink shadow-lift">
+    <div class="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-teal-700/40 blur-3xl" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute -bottom-28 -left-16 h-80 w-80 rounded-full bg-gold-500/15 blur-3xl" aria-hidden="true"></div>
+
+    <div class="relative p-8 sm:p-12 lg:p-16">
+      <p class="reveal font-mono text-xs font-semibold uppercase tracking-[0.28em] text-gold-300">
+        ▸ Live target tracker — field data
+      </p>
+
+      <div class="mt-10 grid items-end gap-12 lg:grid-cols-2">
+        <!-- Target -->
+        <div class="reveal" style="--d:100ms">
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-teal-300">Target</p>
+          <p class="mt-2 font-display text-6xl font-bold tabular-nums tracking-tight text-pearl sm:text-7xl lg:text-8xl">100,000</p>
+          <p class="mt-3 text-teal-200">trees across Sheikhupura</p>
+        </div>
+        <!-- Deployed -->
+        <div class="reveal" style="--d:200ms">
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-teal-300">Deployed to date</p>
+          <p class="mt-2 font-display text-6xl font-bold tabular-nums tracking-tight text-gold-400 sm:text-7xl lg:text-8xl">
+            <span id="deployedCount" data-count="9317">0</span>
+          </p>
+          <p class="mt-3 text-teal-200">surviving, verified, pinned — not just planted</p>
+        </div>
+      </div>
+
+      <!-- Progress -->
+      <div class="reveal mt-12" style="--d:300ms">
+        <div class="h-2.5 w-full overflow-hidden rounded-full bg-teal-800">
+          <div id="progressBar" data-progress="9.3" class="h-full rounded-full bg-gold-400"></div>
+        </div>
+        <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <p class="font-mono text-[13px] text-teal-300">9.3% of canopy target · counter updated weekly by plantation crews</p>
+          <a href="https://www.google.com/maps/search/Sheikhupura+Punjab" target="_blank" rel="noopener"
+             class="text-sm font-medium text-pearl underline decoration-gold-400 decoration-2 underline-offset-4 transition-colors hover:text-gold-300">
+            See the coordinates ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 3 · THE CORE WORKS ══════════════════ -->
+<section class="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
+  <div class="max-w-2xl">
+    <p class="reveal flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-teal-600">
+      <span class="h-2 w-2 rounded-full bg-gold-400"></span> The core works
+    </p>
+    <h2 class="reveal mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl" style="--d:100ms">
+      Unranked. Unnumbered.<br />All load-bearing.
+    </h2>
+  </div>
+
+  <div class="mt-16 space-y-20 lg:space-y-24">
+
+    <!-- A · Regional Reforestation -->
+    <article class="reveal grid gap-8 border-t border-teal-100 pt-12 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-gold-600">Target area — Canopy</p>
+        <h3 class="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
+          The largest tree plantation NGO in Sheikhupura. Said plainly, on purpose.
+        </h3>
+      </div>
+      <div class="lg:col-span-7 lg:col-start-6">
+        <p class="text-lg leading-relaxed text-slate-600">
+          Most organizations hedge their ambitions. We put ours on a tracker at the top of the page. Native neem, sheesham, jamun, and amaltas along canal banks, schoolyards, graveyards, and roadside verges — chosen for survival in this soil, not for how they photograph. Planting day is the easy part; our crews return at 30, 90, and 365 days, because <strong class="font-semibold text-ink">a tree only joins the counter once it has survived a Punjab summer.</strong>
+        </p>
+        <p class="mt-5 font-mono text-[13px] text-teal-700">In practice → survival-audited groves, publicly pinned, one district made measurably greener.</p>
+      </div>
+    </article>
+
+    <!-- B · Sustainable Micro-Capitalism -->
+    <article class="reveal grid gap-8 border-t border-teal-100 pt-12 lg:grid-cols-12">
+      <div class="lg:col-span-4 lg:col-start-9 lg:order-2">
+        <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-gold-600">Target area — Engines</p>
+        <h3 class="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
+          We don't hand out relief. We hand over engines.
+        </h3>
+      </div>
+      <div class="lg:col-span-7 lg:order-1">
+        <p class="text-lg leading-relaxed text-slate-600">
+          A ration bag runs out by month's end and the queue re-forms. So we stopped funding queues. Instead: a fully equipped mobile fruit cart — the cart itself, a scale, the first day's stock, a route walked together, help with the vendor paperwork. The person who stood in an aid line on Monday is <strong class="font-semibold text-ink">a business owner by Friday</strong>, with prices they set and takings that are entirely theirs. No repayment schedule. The only ask: when the engine runs strong, help us seed the next one.
+        </p>
+        <p class="mt-5 font-mono text-[13px] text-teal-700">In practice → a funded cart typically clears its own cost within a season. Then it's simply theirs.</p>
+      </div>
+    </article>
+
+    <!-- C · Artisan Pipeline -->
+    <article class="reveal grid gap-8 border-t border-teal-100 pt-12 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-gold-600">Target area — Craft</p>
+        <h3 class="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
+          The Bazaar isn't charity. It's a premium pipeline.
+        </h3>
+      </div>
+      <div class="lg:col-span-7 lg:col-start-6">
+        <p class="text-lg leading-relaxed text-slate-600">
+          Generations of weaving, throwing, carving, and silverwork deserve better than a pity purchase. Our digital Bazaar routes that mastery straight to buyers at <strong class="font-semibold text-ink">full global market value — never "local rates."</strong> Creator autonomy is absolute: the maker sets the price, keeps their name on the work, and is paid first. Every remaining rupee of margin cycles back into the foundation. Heritage, honored commercially.
+        </p>
+        <a href="bazaar.html" class="mt-5 inline-block font-mono text-[13px] font-semibold text-teal-700 underline decoration-gold-400 decoration-2 underline-offset-4 transition-colors hover:text-ink">
+          Walk the Bazaar →
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════ 4 · THE OPEN LEDGER PIPELINE ══════════════════ -->
+<section id="ledger" class="bg-white py-24 lg:py-32">
+  <div class="mx-auto max-w-4xl px-5 sm:px-8">
+    <p class="reveal flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-teal-600">
+      <span class="h-2 w-2 rounded-full bg-gold-400"></span> The open ledger pipeline
+    </p>
+    <h2 class="reveal mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl" style="--d:100ms">
+      Skip the contact form.<br />File a need.
+    </h2>
+    <p class="reveal mt-5 max-w-2xl text-lg leading-relaxed text-slate-600" style="--d:200ms">
+      This isn't a mailbox that empties into a void. Every entry routes into the Ghani deployment pipeline, gets verified on foot by a volunteer, and — if it holds — becomes a crew with a date.
+    </p>
+
+    <form id="ledgerForm" class="reveal mt-12" style="--d:300ms" novalidate>
+      <!-- Category toggles -->
+      <fieldset>
+        <legend class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-teal-700">01 — Route the entry</legend>
+        <div class="mt-4 flex flex-wrap gap-3" role="group" aria-label="Category">
+          <button type="button" data-cat="Environmental / Plantation" aria-pressed="true"
+                  class="cat-btn rounded-full border-2 border-ink bg-ink px-5 py-2.5 text-sm font-semibold text-gold-300 transition-colors">
+            Environmental / Plantation
+          </button>
+          <button type="button" data-cat="Micro-Enterprise / Carts" aria-pressed="false"
+                  class="cat-btn rounded-full border-2 border-teal-200 bg-transparent px-5 py-2.5 text-sm font-semibold text-teal-700 transition-colors hover:border-teal-400">
+            Micro-Enterprise / Carts
+          </button>
+          <button type="button" data-cat="Artisan Craft" aria-pressed="false"
+                  class="cat-btn rounded-full border-2 border-teal-200 bg-transparent px-5 py-2.5 text-sm font-semibold text-teal-700 transition-colors hover:border-teal-400">
+            Artisan Craft
+          </button>
+        </div>
+      </fieldset>
+
+      <!-- Raw spacious input -->
+      <div class="mt-9">
+        <label for="needInput" class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-teal-700">
+          02 — Report an infrastructure gap / log a community need
+        </label>
+        <textarea id="needInput" rows="5" required
+                  placeholder="e.g., The canal bank past Farooqabad bridge has 400 metres of bare earth and full sun. Good soil, no shade, no trees."
+                  class="mt-4 w-full resize-y rounded-3xl border-2 border-teal-100 bg-pearl px-6 py-5 text-lg leading-relaxed text-ink placeholder:text-slate-400 transition-colors focus:border-gold-400"></textarea>
+      </div>
+
+      <button type="submit"
+              class="mt-7 w-full rounded-full bg-gold-400 py-4 font-display text-lg font-semibold text-ink shadow-glow lift hover:bg-gold-300 sm:w-auto sm:px-12">
+        Log It Into the Pipeline
+      </button>
+    </form>
+
+    <!-- Terminal-style ledger output -->
+    <div id="ledgerOut" hidden class="mt-9 rounded-3xl bg-ink p-6 font-mono text-[13px] leading-relaxed text-teal-200 shadow-lift sm:p-8" aria-live="polite">
+      <p class="text-teal-400">ghani@deployment-pipeline : ~/open-ledger</p>
+      <div id="ledgerLines" class="mt-3 space-y-2"></div>
+      <p class="mt-3 text-gold-300">&gt; <span class="caret inline-block h-4 w-2 translate-y-0.5 bg-gold-300"></span></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════ FOOTER (site-uniform, condensed) ══════════════════ -->
+<footer class="bg-teal-950 text-teal-200">
+  <div class="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+    <div class="flex flex-col items-start justify-between gap-10 md:flex-row md:items-center">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="grid h-10 w-10 place-items-center rounded-2xl bg-gold-400 text-ink">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22v-8"/><path d="M12 14c0-4 2.5-6.5 7-7-.5 4.5-3 7-7 7z" fill="currentColor" stroke="none"/>
+            <path d="M12 14c0-4-2.5-6.5-7-7 .5 4.5 3 7 7 7z" fill="currentColor" stroke="none" opacity=".55"/>
+          </svg>
+        </span>
+        <span class="font-display text-xl font-bold text-pearl">Ghani Welfare · The Blueprint</span>
+      </a>
+
+      <nav aria-label="Footer">
+        <ul class="flex flex-wrap gap-x-8 gap-y-3 text-[15px]">
+          <li><a href="why-different.html" class="text-gold-300">Why We're Different</a></li>
+          <li><a href="index.html#frontlines" class="hover:text-gold-300 transition-colors">Active Frontlines</a></li>
+          <li><a href="bazaar.html" class="hover:text-gold-300 transition-colors">The Bazaar</a></li>
+          <li><a href="index.html#join" class="hover:text-gold-300 transition-colors">Volunteer</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-teal-400 sm:flex-row">
+      <p>© 2026 Ghani Welfare. We listen. Then we deploy.</p>
+      <p><span class="font-urdu text-base">عمل</span> — action is the whole argument.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════ VANILLA JS ══════════════════ -->
+<script>
+  // ── Mobile menu ──────────────────────────────────────────────
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.classList.toggle('menu-open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  // ── Header shadow on scroll ──────────────────────────────────
+  const header = document.getElementById('siteHeader');
+  const onScroll = () => header.classList.toggle('shadow-lift', window.scrollY > 12);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ── Scroll-reveal (respects reduced motion) ──────────────────
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reveals = document.querySelectorAll('.reveal');
+
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    reveals.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(el => io.observe(el));
+  }
+
+  // ── Tracker: count-up + progress fill ────────────────────────
+  const countEl = document.getElementById('deployedCount');
+  const progressBar = document.getElementById('progressBar');
+  const targetVal = parseInt(countEl.dataset.count, 10);
+
+  function runTracker() {
+    progressBar.style.width = progressBar.dataset.progress + '%';
+    if (prefersReduced) {
+      countEl.textContent = targetVal.toLocaleString();
+      return;
+    }
+    const duration = 1600, start = performance.now();
+    const ease = t => 1 - Math.pow(1 - t, 3);
+    function frame(now) {
+      const t = Math.min((now - start) / duration, 1);
+      countEl.textContent = Math.round(ease(t) * targetVal).toLocaleString();
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  if ('IntersectionObserver' in window && !prefersReduced) {
+    const trackerIO = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) { runTracker(); trackerIO.disconnect(); }
+    }, { threshold: 0.4 });
+    trackerIO.observe(countEl);
+  } else {
+    runTracker();
+  }
+
+  // ── Open Ledger: category toggles ────────────────────────────
+  const catBtns = document.querySelectorAll('.cat-btn');
+  let activeCat = 'Environmental / Plantation';
+  const catOn  = ['border-ink', 'bg-ink', 'text-gold-300'];
+  const catOff = ['border-teal-200', 'bg-transparent', 'text-teal-700', 'hover:border-teal-400'];
+
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      catBtns.forEach(b => {
+        b.classList.remove(...catOn);
+        b.classList.add(...catOff);
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.remove(...catOff);
+      btn.classList.add(...catOn);
+      btn.setAttribute('aria-pressed', 'true');
+      activeCat = btn.dataset.cat;
+    });
+  });
+
+  // ── Open Ledger: submission → terminal confirmation ──────────
+  const ledgerForm = document.getElementById('ledgerForm');
+  const needInput = document.getElementById('needInput');
+  const ledgerOut = document.getElementById('ledgerOut');
+  const ledgerLines = document.getElementById('ledgerLines');
+
+  ledgerForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const need = needInput.value.trim();
+    if (!need) { needInput.focus(); return; }
+
+    const stamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const preview = need.length > 90 ? need.slice(0, 90) + '…' : need;
+
+    const entry = document.createElement('div');
+    entry.innerHTML =
+      `<p class="text-teal-300">&gt; [${stamp}] ${activeCat.toUpperCase()} — “${preview.replace(/</g,'&lt;')}”</p>` +
+      `<p class="text-gold-300">&gt; Suggestion logged successfully into the Ghani Deployment Pipeline. We are listening.</p>`;
+    ledgerLines.appendChild(entry);
+
+    ledgerOut.hidden = false;
+    needInput.value = '';
+    ledgerOut.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'nearest' });
+  });
+</script>
+
+</body>
+</html>
