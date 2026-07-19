@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Keep the admin panel out of search engines -->
+  <meta name="robots" content="noindex" />
+  <title>Ghani Initiative — Content Manager</title>
+
+  <!-- Netlify Identity widget: handles secure login for the CMS -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <!-- Decap CMS (formerly Netlify CMS) — official CDN build.
+       It automatically finds config.yml in this same /admin directory. -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <!-- Netlify Identity handler, before the closing </body> tag.
+       Ensures a fresh login (or an accepted invite) lands you inside
+       the CMS instead of on a blank page. -->
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function (user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function () {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
